@@ -1,0 +1,72 @@
+swagger: '2.0' -> openapi: 3.0.1
+--
+Schemas:
+'#/definitions/Meta' -> '#/components/schemas/Meta'
+====
+
+Paths:
+type: string
+||
+VV
+schema:
+   type: string
+--   
+  /Patient:
+    post:
+      tags:
+        - Patient
+      parameters:
+        - name: body
+          in: body
+          schema:
+            $ref: '#/definitions/Patient'
+      responses:
+        '200':
+          description: Success
+      consumes:
+        - application/fhir+json
+||
+VV        
+    post:
+      tags:
+      - Patient
+      requestBody:
+        content:
+          application/fhir+json:
+            schema:
+              $ref: '#/components/schemas/Patient'
+        required: false
+      responses:
+        200:
+          description: Success
+          content: {}
+      x-codegen-request-body-name: body
+---
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Patient'
+||
+VV
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Patient'
+====
+host: 4rx6irq13b.execute-api.us-east-2.amazonaws.com
+schemes:
+  - https
+basePath: ''
+
+||
+VV
+servers:
+- url: https://4rx6irq13b.execute-api.us-east-2.amazonaws.com/
+
+          

@@ -1,0 +1,61 @@
+{
+ 
+ "operations":  {
+        "create": {"command": "POST [base]/[type]",
+            "responces": [201, 400, 404, 405, 422]
+        },
+        "read": {"command": "GET [base]/[type]/[id]",
+            "responces": [200, 404, 410]
+        },
+        "vread": {"command": "GET [base]/[type]/[id]/_history/[vid]",
+            "responces": [200, 404]
+        },
+        "update": {"command": "PUT [base]/[type]/[id]",
+            "responces": [200, 201, 400, 404, 405, 409, 412, 422]
+        },    
+        "delete": {"command": "DELETE [base]/[type]/[id]",
+            "responces": [200, 202, 204, 404, 405, 409, 412]
+        },    
+        "history": {"command": "GET [base]/[type]/[id]/_history",
+            "responces": [200]
+        },
+        "batch": {"command": "POST [base]",
+            "responces": [201, 400, 404, 405, 422]
+        },
+        "transaction": {"command": "POST [base]",
+            "responces": [200, 400, 404, 405, 409, 412, 422]
+        },
+        "search": {"command": "GET [base]/[type]?name=value&...",
+            "responces": [200, 401]
+        }
+    },
+    "httpResponceCodes": {
+        "200": "OK",
+        "201": "Created",
+        "400": "Bad Request",
+        "401": "Unauthorized",
+        "403": "Forbidden",
+        "404": "Not Found",
+        "405": "Method Not Allowed",
+        "406": "Not Supported",
+        "409": "Conflict",
+        "410": "Resource Was Deleted",
+        "412": "Precondition Failed",
+        "422": "Unprocessable Entity",
+        "503": "Service Disabled"
+
+    },
+    "searchParameters": {
+        "_id": {"type": "token", "description": "Resource id (not a full URL)", "reference": "https://www.hl7.org/fhir/search.html#id"},
+        "_lastUpdated": {"type": "date", "description": "Date last updated", "reference": "https://www.hl7.org/fhir/search.html#lastUpdated"},
+        "_tag": {"type": "token", "description": "Search by a resource tag", "reference": "https://www.hl7.org/fhir/search.html#tag"},
+        "_profile": {"type": "uri", "description": "Search for all resources tagged with a profile", "reference": "https://www.hl7.org/fhir/search.html#profile"},
+        "_security": {"type": "token", "description": "Search by a security label", "reference": "https://www.hl7.org/fhir/search.html#security"},
+        "_content": {"type": "string", "description": "Text search against the entire resource", "reference": "https://www.hl7.org/fhir/search.html#content"},
+        "_has": {"type": "string", "description": "Reverse chaining", "reference": "https://www.hl7.org/fhir/search.html#has"},
+        "_sort": {"type": "string", "description": "Order to sort results in (can repeat for inner sort orders) Name of a valid search parameter", "reference": "https://www.hl7.org/fhir/search.html#sort"},
+        "_count": {"type": "number", "description": "Number of results per page", "reference": "https://www.hl7.org/fhir/search.html#count"},
+        "_include": {"type": "string", "description": "Other resources to include in the search results that search matches point to SourceType:searchParam(:targetType)", "reference": "https://www.hl7.org/fhir/search.html#include"},
+        "_revinclude": {"type": "string", "description": "Other resources to include in the search results when they refer to search matches SourceType:searchParam(:targetType)", "reference": "https://www.hl7.org/fhir/search.html#include"}
+    }
+}

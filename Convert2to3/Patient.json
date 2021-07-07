@@ -1,0 +1,1418 @@
+{
+ "swagger": "2.0",
+ "info": {
+  "description": "Information about an individual or animal receiving health care services",
+  "title": "FHIR R4 Patient Resource",
+  "version": "1.0"
+ },
+ "host": "4rx6irq13b.execute-api.us-east-2.amazonaws.com",
+ "schemes": [
+  "https"
+ ],
+ "basePath": "",
+ "paths": {
+  "/Patient": {
+   "post": {
+    "tags": [
+     "Patient"
+    ],
+    "parameters": [
+     {
+      "name": "body",
+      "in": "body",
+      "schema": {
+       "$ref": "#/definitions/Patient"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success"
+     }
+    },
+    "consumes": [
+     "application/fhir+json"
+    ]
+   },
+   "get": {
+    "tags": [
+     "Patient"
+    ],
+    "parameters": [
+     {
+      "name": "active",
+      "type": "string",
+      "in": "query",
+      "description": "The Healthcare Service is currently marked as active"
+     },
+     {
+      "name": "address",
+      "type": "string",
+      "in": "query",
+      "description": "Identifier for the network access point of the user device"
+     },
+     {
+      "name": "address-city",
+      "type": "string",
+      "in": "query",
+      "description": "A city specified in an address"
+     },
+     {
+      "name": "address-country",
+      "type": "string",
+      "in": "query",
+      "description": "A country specified in an address"
+     },
+     {
+      "name": "address-postalcode",
+      "type": "string",
+      "in": "query",
+      "description": "A postal code specified in an address"
+     },
+     {
+      "name": "address-state",
+      "type": "string",
+      "in": "query",
+      "description": "A state specified in an address"
+     },
+     {
+      "name": "address-use",
+      "type": "string",
+      "in": "query",
+      "description": "A use code specified in an address"
+     },
+     {
+      "name": "birthdate",
+      "type": "string",
+      "in": "query",
+      "format": "date",
+      "description": "Multiple Resources: \r\n\r\n* [Patient](patient.html): The patient's date of birth\r\n* [Person](person.html): The person's date of birth\r\n* [RelatedPerson](relatedperson.html): The Related Person's date of birth\r\n"
+     },
+     {
+      "name": "death-date",
+      "type": "string",
+      "in": "query",
+      "format": "date",
+      "description": "The date of death has been provided and satisfies this search value"
+     },
+     {
+      "name": "deceased",
+      "type": "string",
+      "in": "query",
+      "description": "This patient has been marked as deceased, or as a death date entered"
+     },
+     {
+      "name": "email",
+      "type": "string",
+      "in": "query",
+      "description": "A value in an email contact"
+     },
+     {
+      "name": "family",
+      "type": "string",
+      "in": "query",
+      "description": "Multiple Resources: \r\n\r\n* [Patient](patient.html): A portion of the family name of the patient\r\n* [Practitioner](practitioner.html): A portion of the family name\r\n"
+     },
+     {
+      "name": "gender",
+      "type": "string",
+      "in": "query",
+      "description": "Multiple Resources: \r\n\r\n* [Patient](patient.html): Gender of the patient\r\n* [Person](person.html): The gender of the person\r\n* [Practitioner](practitioner.html): Gender of the practitioner\r\n* [RelatedPerson](relatedperson.html): Gender of the related person\r\n"
+     },
+     {
+      "name": "general-practitioner",
+      "type": "string",
+      "in": "query",
+      "description": "Patient's nominated general practitioner, not the organization that manages the record"
+     },
+     {
+      "name": "given",
+      "type": "string",
+      "in": "query",
+      "description": "Multiple Resources: \r\n\r\n* [Patient](patient.html): A portion of the given name of the patient\r\n* [Practitioner](practitioner.html): A portion of the given name\r\n"
+     },
+     {
+      "name": "identifier",
+      "type": "string",
+      "in": "query",
+      "description": "Account number"
+     },
+     {
+      "name": "language",
+      "type": "string",
+      "in": "query",
+      "description": "A language in which a designation is provided"
+     },
+     {
+      "name": "link",
+      "type": "string",
+      "in": "query",
+      "description": "All patients linked to the given patient"
+     },
+     {
+      "name": "name",
+      "type": "string",
+      "in": "query",
+      "description": "Human-readable label"
+     },
+     {
+      "name": "organization",
+      "type": "string",
+      "in": "query",
+      "description": "Custodian of the consent"
+     },
+     {
+      "name": "phone",
+      "type": "string",
+      "in": "query",
+      "description": "A value in a phone contact"
+     },
+     {
+      "name": "phonetic",
+      "type": "string",
+      "in": "query",
+      "description": "A portion of the organization's name using some kind of phonetic matching algorithm"
+     },
+     {
+      "name": "telecom",
+      "type": "string",
+      "in": "query",
+      "description": "Contact details for individual or organization"
+     },
+     {
+      "name": "_format",
+      "in": "query",
+      "type": "string",
+      "x-consoleDefault": "application/json",
+      "description": ""
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "type": "array",
+       "items": {
+        "$ref": "#/definitions/Patient"
+       }
+      }
+     }
+    }
+   }
+  },
+  "/Patient/{id}": {
+   "parameters": [
+    {
+     "in": "path",
+     "required": true,
+     "name": "id",
+     "type": "string"
+    }
+   ],
+   "get": {
+    "tags": [
+     "Patient"
+    ],
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/Patient"
+      }
+     }
+    }
+   },
+   "put": {
+    "tags": [
+     "Patient"
+    ],
+    "parameters": [
+     {
+      "in": "body",
+      "name": "body",
+      "schema": {
+       "$ref": "#/definitions/Patient"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success"
+     }
+    }
+   },
+   "delete": {
+    "tags": [
+     "Patient"
+    ],
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "Success"
+     }
+    }
+   }
+  },
+  "/Patient/{id}/_history": {
+   "get": {
+    "tags": [
+     "Patient"
+    ],
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "type": "string"
+     },
+     {
+      "name": "_count",
+      "in": "query",
+      "type": "string"
+     },
+     {
+      "name": "_since",
+      "in": "query",
+      "type": "string"
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success"
+     }
+    }
+   }
+  },
+  "/Patient/{id}/_history/{vid}": {
+   "get": {
+    "tags": [
+     "Patient"
+    ],
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "type": "string"
+     },
+     {
+      "name": "vid",
+      "in": "path",
+      "required": true,
+      "type": "string"
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/Patient"
+      }
+     }
+    }
+   }
+  }
+ },
+ "tags": [
+  {
+   "name": "Patient"
+  }
+ ],
+ "definitions": {
+  "Patient": {
+   "description": "Information about an individual or animal receiving health care services",
+   "type": "object",
+   "properties": {
+    "active": {
+     "type": "boolean",
+     "description": "Whether this patient's record is in active use"
+    },
+    "address": {
+     "type": "array",
+     "items": {
+      "$ref": "#/definitions/Address"
+     },
+     "description": "An address for the individual"
+    },
+    "birthDate": {
+     "type": "string",
+     "description": "The date of birth for the individual"
+    },
+    "communication": {
+     "type": "array",
+     "items": {
+      "$ref": "#/definitions/Patient.communication"
+     },
+     "description": "A language which may be used to communicate with the patient about his or her health"
+    },
+    "contact": {
+     "type": "array",
+     "items": {
+      "$ref": "#/definitions/Patient.contact"
+     },
+     "description": "A contact party (e.g. guardian, partner, friend) for the patient"
+    },
+    "contained": {
+     "type": "array",
+     "items": {
+      "$ref": "#/definitions/Resource"
+     },
+     "description": "Contained, inline Resources"
+    },
+    "deceased": {
+     "description": ""
+    },
+    "deceasedBoolean": {
+     "type": "boolean",
+     "description": ""
+    },
+    "deceasedDateTime": {
+     "type": "string",
+     "description": ""
+    },
+    "gender": {
+     "type": "string",
+     "description": "male | female | other | unknown"
+    },
+    "generalPractitioner": {
+     "type": "array",
+     "items": {
+      "$ref": "#/definitions/Reference"
+     },
+     "description": "Patient's nominated primary care provider"
+    },
+    "id": {
+     "type": "string",
+     "description": "Logical id of this artifact"
+    },
+    "identifier": {
+     "type": "array",
+     "items": {
+      "$ref": "#/definitions/Identifier"
+     },
+     "description": "An identifier for this patient"
+    },
+    "implicitRules": {
+     "type": "string",
+     "description": "A set of rules under which this content was created"
+    },
+    "language": {
+     "type": "string",
+     "description": "Language of the resource content"
+    },
+    "link": {
+     "type": "array",
+     "items": {
+      "$ref": "#/definitions/Patient.link"
+     },
+     "description": "Link to another patient resource that concerns the same actual person"
+    },
+    "managingOrganization": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Reference"
+      }
+     ],
+     "description": "Organization that is the custodian of the patient record"
+    },
+    "maritalStatus": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/CodeableConcept"
+      }
+     ],
+     "description": "Marital (civil) status of a patient"
+    },
+    "meta": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Meta"
+      }
+     ],
+     "description": "Metadata about the resource"
+    },
+    "multipleBirth": {
+     "description": ""
+    },
+    "multipleBirthBoolean": {
+     "type": "boolean",
+     "description": ""
+    },
+    "multipleBirthInteger": {
+     "type": "number",
+     "description": ""
+    },
+    "name": {
+     "type": "array",
+     "items": {
+      "$ref": "#/definitions/HumanName"
+     },
+     "description": "A name associated with the patient"
+    },
+    "photo": {
+     "type": "array",
+     "items": {
+      "$ref": "#/definitions/Attachment"
+     },
+     "description": "Image of the patient"
+    },
+    "telecom": {
+     "type": "array",
+     "items": {
+      "$ref": "#/definitions/ContactPoint"
+     },
+     "description": "A contact detail for the individual"
+    },
+    "text": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Narrative"
+      }
+     ],
+     "description": "Text summary of the resource, for human interpretation"
+    }
+   },
+   "required": [
+    "id"
+   ]
+  },
+  "Patient.communication": {
+   "description": "",
+   "type": "object",
+   "properties": {
+    "id": {
+     "type": "string",
+     "description": "Unique id for inter-element referencing"
+    },
+    "language": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/CodeableConcept"
+      }
+     ],
+     "description": "The language which can be used to communicate with the patient about his or her health"
+    },
+    "preferred": {
+     "type": "boolean",
+     "description": "Language preference indicator"
+    }
+   },
+   "required": [
+    "id"
+   ]
+  },
+  "Patient.contact": {
+   "description": "",
+   "type": "object",
+   "properties": {
+    "address": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Address"
+      }
+     ],
+     "description": "Address for the contact person"
+    },
+    "gender": {
+     "type": "string",
+     "description": "male | female | other | unknown"
+    },
+    "id": {
+     "type": "string",
+     "description": "Unique id for inter-element referencing"
+    },
+    "name": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/HumanName"
+      }
+     ],
+     "description": "A name associated with the contact person"
+    },
+    "organization": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Reference"
+      }
+     ],
+     "description": "Organization that is associated with the contact"
+    },
+    "period": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Period"
+      }
+     ],
+     "description": "The period during which this contact person or organization is valid to be contacted relating to this patient"
+    },
+    "relationship": {
+     "type": "array",
+     "items": {
+      "$ref": "#/definitions/CodeableConcept"
+     },
+     "description": "The kind of relationship"
+    },
+    "telecom": {
+     "type": "array",
+     "items": {
+      "$ref": "#/definitions/ContactPoint"
+     },
+     "description": "A contact detail for the person"
+    }
+   },
+   "required": [
+    "id"
+   ]
+  },
+  "Patient.link": {
+   "description": "",
+   "type": "object",
+   "properties": {
+    "id": {
+     "type": "string",
+     "description": "Unique id for inter-element referencing"
+    },
+    "other": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Reference"
+      }
+     ],
+     "description": "The other patient or related person resource that the link refers to"
+    },
+    "type": {
+     "type": "string",
+     "description": "replaced-by | replaces | refer | seealso"
+    }
+   },
+   "required": [
+    "id"
+   ]
+  },
+  "Address": {
+   "description": "",
+   "type": "object",
+   "properties": {
+    "city": {
+     "type": "string",
+     "description": "Name of city, town etc."
+    },
+    "country": {
+     "type": "string",
+     "description": "Country (e.g. can be ISO 3166 2 or 3 letter code)"
+    },
+    "district": {
+     "type": "string",
+     "description": "District name (aka county)"
+    },
+    "id": {
+     "type": "string",
+     "description": ""
+    },
+    "line": {
+     "type": "string",
+     "description": "Street name, number, direction & P.O. Box etc."
+    },
+    "period": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Period"
+      }
+     ],
+     "description": "Time period when address was/is in use"
+    },
+    "postalCode": {
+     "type": "string",
+     "description": "Postal code for area"
+    },
+    "state": {
+     "type": "string",
+     "description": "Sub-unit of country (abbreviations ok)"
+    },
+    "text": {
+     "type": "string",
+     "description": "Text representation of the address"
+    },
+    "type": {
+     "type": "string",
+     "description": "postal | physical | both"
+    },
+    "use": {
+     "type": "string",
+     "description": "home | work | temp | old | billing - purpose of this address"
+    }
+   },
+   "required": [
+    "id"
+   ]
+  },
+  "Resource": {
+   "description": "Base Resource",
+   "type": "object",
+   "properties": {
+    "id": {
+     "type": "string",
+     "description": "Logical id of this artifact"
+    },
+    "implicitRules": {
+     "type": "string",
+     "description": "A set of rules under which this content was created"
+    },
+    "language": {
+     "type": "string",
+     "description": "Language of the resource content"
+    },
+    "meta": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Meta"
+      }
+     ],
+     "description": "Metadata about the resource"
+    }
+   },
+   "required": [
+    "id"
+   ]
+  },
+  "Extension": {
+   "description": "",
+   "type": "object",
+   "properties": {
+    "id": {
+     "type": "string",
+     "description": ""
+    },
+    "url": {
+     "type": "string",
+     "description": "identifies the meaning of the extension"
+    },
+    "value": {
+     "description": ""
+    },
+    "valueAddress": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Address"
+      }
+     ],
+     "description": ""
+    },
+    "valueAge": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Age"
+      }
+     ],
+     "description": ""
+    },
+    "valueAnnotation": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Annotation"
+      }
+     ],
+     "description": ""
+    },
+    "valueAttachment": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Attachment"
+      }
+     ],
+     "description": ""
+    },
+    "valueBase64Binary": {
+     "type": "string",
+     "description": ""
+    },
+    "valueBoolean": {
+     "type": "boolean",
+     "description": ""
+    },
+    "valueCanonical": {
+     "type": "string",
+     "description": ""
+    },
+    "valueCode": {
+     "type": "string",
+     "description": ""
+    },
+    "valueCodeableConcept": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/CodeableConcept"
+      }
+     ],
+     "description": ""
+    },
+    "valueCoding": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Coding"
+      }
+     ],
+     "description": ""
+    },
+    "valueContactDetail": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/ContactDetail"
+      }
+     ],
+     "description": ""
+    },
+    "valueContactPoint": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/ContactPoint"
+      }
+     ],
+     "description": ""
+    },
+    "valueContributor": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Contributor"
+      }
+     ],
+     "description": ""
+    },
+    "valueCount": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Count"
+      }
+     ],
+     "description": ""
+    },
+    "valueDataRequirement": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/DataRequirement"
+      }
+     ],
+     "description": ""
+    },
+    "valueDate": {
+     "type": "string",
+     "description": ""
+    },
+    "valueDateTime": {
+     "type": "string",
+     "description": ""
+    },
+    "valueDecimal": {
+     "type": "number",
+     "description": ""
+    },
+    "valueDistance": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Distance"
+      }
+     ],
+     "description": ""
+    },
+    "valueDosage": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Dosage"
+      }
+     ],
+     "description": ""
+    },
+    "valueDuration": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Duration"
+      }
+     ],
+     "description": ""
+    },
+    "valueExpression": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Expression"
+      }
+     ],
+     "description": ""
+    },
+    "valueHumanName": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/HumanName"
+      }
+     ],
+     "description": ""
+    },
+    "valueId": {
+     "type": "string",
+     "description": ""
+    },
+    "valueIdentifier": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Identifier"
+      }
+     ],
+     "description": ""
+    },
+    "valueInstant": {
+     "type": "string",
+     "description": ""
+    },
+    "valueInteger": {
+     "type": "number",
+     "description": ""
+    },
+    "valueMarkdown": {
+     "type": "string",
+     "description": ""
+    },
+    "valueMeta": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Meta"
+      }
+     ],
+     "description": ""
+    },
+    "valueMoney": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Money"
+      }
+     ],
+     "description": ""
+    },
+    "valueOid": {
+     "type": "string",
+     "description": ""
+    },
+    "valueParameterDefinition": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/ParameterDefinition"
+      }
+     ],
+     "description": ""
+    },
+    "valuePeriod": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Period"
+      }
+     ],
+     "description": ""
+    },
+    "valuePositiveInt": {
+     "type": "number",
+     "description": ""
+    },
+    "valueQuantity": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Quantity"
+      }
+     ],
+     "description": ""
+    },
+    "valueRange": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Range"
+      }
+     ],
+     "description": ""
+    },
+    "valueRatio": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Ratio"
+      }
+     ],
+     "description": ""
+    },
+    "valueReference": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Reference"
+      }
+     ],
+     "description": ""
+    },
+    "valueRelatedArtifact": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/RelatedArtifact"
+      }
+     ],
+     "description": ""
+    },
+    "valueSampledData": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/SampledData"
+      }
+     ],
+     "description": ""
+    },
+    "valueSignature": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Signature"
+      }
+     ],
+     "description": ""
+    },
+    "valueString": {
+     "type": "string",
+     "description": ""
+    },
+    "valueTime": {
+     "type": "string",
+     "description": ""
+    },
+    "valueTiming": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Timing"
+      }
+     ],
+     "description": ""
+    },
+    "valueTriggerDefinition": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/TriggerDefinition"
+      }
+     ],
+     "description": ""
+    },
+    "valueUnsignedInt": {
+     "type": "number",
+     "description": ""
+    },
+    "valueUri": {
+     "type": "string",
+     "description": ""
+    },
+    "valueUrl": {
+     "type": "string",
+     "description": ""
+    },
+    "valueUsageContext": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/UsageContext"
+      }
+     ],
+     "description": ""
+    },
+    "valueUuid": {
+     "type": "string",
+     "description": ""
+    }
+   },
+   "required": [
+    "id"
+   ]
+  },
+  "Reference": {
+   "description": "",
+   "type": "object",
+   "properties": {
+    "display": {
+     "type": "string",
+     "description": "Text alternative for the resource"
+    },
+    "id": {
+     "type": "string",
+     "description": ""
+    },
+    "identifier": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Identifier"
+      }
+     ],
+     "description": "Logical reference, when literal reference is not known"
+    },
+    "reference": {
+     "type": "string",
+     "description": "Literal reference, Relative, internal or absolute URL"
+    },
+    "type": {
+     "type": "string",
+     "description": "Type the reference refers to (e.g. \"Patient\")"
+    }
+   },
+   "required": [
+    "id"
+   ]
+  },
+  "Identifier": {
+   "description": "",
+   "type": "object",
+   "properties": {
+    "assigner": {
+     "type": "string",
+     "description": "Organization that issued id (may be just text)"
+    },
+    "id": {
+     "type": "string",
+     "description": ""
+    },
+    "period": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Period"
+      }
+     ],
+     "description": "Time period when id is/was valid for use"
+    },
+    "system": {
+     "type": "string",
+     "description": "The namespace for the identifier value"
+    },
+    "type": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/CodeableConcept"
+      }
+     ],
+     "description": "Description of identifier"
+    },
+    "use": {
+     "type": "string",
+     "description": "usual | official | temp | secondary | old (If known)"
+    },
+    "value": {
+     "type": "string",
+     "description": "The value that is unique"
+    }
+   },
+   "required": [
+    "id"
+   ]
+  },
+  "CodeableConcept": {
+   "description": "",
+   "type": "object",
+   "properties": {
+    "coding": {
+     "type": "array",
+     "items": {
+      "$ref": "#/definitions/Coding"
+     },
+     "description": "Code defined by a terminology system"
+    },
+    "id": {
+     "type": "string",
+     "description": ""
+    },
+    "text": {
+     "type": "string",
+     "description": "Plain text representation of the concept"
+    }
+   },
+   "required": [
+    "id"
+   ]
+  },
+  "Meta": {
+   "description": "",
+   "type": "object",
+   "properties": {
+    "id": {
+     "type": "string",
+     "description": ""
+    },
+    "lastUpdated": {
+     "type": "string",
+     "description": "When the resource version last changed"
+    },
+    "profile": {
+     "type": "string",
+     "description": "Profiles this resource claims to conform to"
+    },
+    "security": {
+     "type": "array",
+     "items": {
+      "$ref": "#/definitions/Coding"
+     },
+     "description": "Security Labels applied to this resource"
+    },
+    "source": {
+     "type": "string",
+     "description": "Identifies where the resource comes from"
+    },
+    "tag": {
+     "type": "array",
+     "items": {
+      "$ref": "#/definitions/Coding"
+     },
+     "description": "Tags applied to this resource"
+    },
+    "versionId": {
+     "type": "string",
+     "description": "Version specific identifier"
+    }
+   },
+   "required": [
+    "id"
+   ]
+  },
+  "HumanName": {
+   "description": "",
+   "type": "object",
+   "properties": {
+    "family": {
+     "type": "string",
+     "description": "Family name (often called 'Surname')"
+    },
+    "given": {
+     "type": "string",
+     "description": "Given names (not always 'first'). Includes middle names"
+    },
+    "id": {
+     "type": "string",
+     "description": ""
+    },
+    "period": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Period"
+      }
+     ],
+     "description": "Time period when name was/is in use"
+    },
+    "prefix": {
+     "type": "string",
+     "description": "Parts that come before the name"
+    },
+    "suffix": {
+     "type": "string",
+     "description": "Parts that come after the name"
+    },
+    "text": {
+     "type": "string",
+     "description": "Text representation of the full name"
+    },
+    "use": {
+     "type": "string",
+     "description": "usual | official | temp | nickname | anonymous | old | maiden"
+    }
+   },
+   "required": [
+    "id"
+   ]
+  },
+  "Attachment": {
+   "description": "",
+   "type": "object",
+   "properties": {
+    "contentType": {
+     "type": "string",
+     "description": "Mime type of the content, with charset etc."
+    },
+    "creation": {
+     "type": "string",
+     "description": "Date attachment was first created"
+    },
+    "data": {
+     "type": "string",
+     "description": "Data inline, base64ed"
+    },
+    "hash": {
+     "type": "string",
+     "description": "Hash of the data (sha-1, base64ed)"
+    },
+    "id": {
+     "type": "string",
+     "description": ""
+    },
+    "language": {
+     "type": "string",
+     "description": "Human language of the content (BCP-47)"
+    },
+    "size": {
+     "type": "number",
+     "description": "Number of bytes of content (if url provided)"
+    },
+    "title": {
+     "type": "string",
+     "description": "Label to display in place of the data"
+    },
+    "url": {
+     "type": "string",
+     "description": "Uri where the data can be found"
+    }
+   },
+   "required": [
+    "id"
+   ]
+  },
+  "ContactPoint": {
+   "description": "",
+   "type": "object",
+   "properties": {
+    "id": {
+     "type": "string",
+     "description": ""
+    },
+    "period": {
+     "type": "object",
+     "allOf": [
+      {
+       "$ref": "#/definitions/Period"
+      }
+     ],
+     "description": "Time period when the contact point was/is in use"
+    },
+    "rank": {
+     "type": "number",
+     "description": "Specify preferred order of use (1 = highest)"
+    },
+    "system": {
+     "type": "string",
+     "description": "phone | fax | email | pager | url | sms | other"
+    },
+    "use": {
+     "type": "string",
+     "description": "home | work | temp | old | mobile - purpose of this contact point"
+    },
+    "value": {
+     "type": "string",
+     "description": "The actual contact point details"
+    }
+   },
+   "required": [
+    "id"
+   ]
+  },
+  "Narrative": {
+   "description": "",
+   "type": "object",
+   "properties": {
+    "div": {
+     "description": "Limited xhtml content"
+    },
+    "id": {
+     "type": "string",
+     "description": ""
+    },
+    "status": {
+     "type": "string",
+     "description": "generated | extensions | additional | empty"
+    }
+   },
+   "required": [
+    "id"
+   ]
+  },
+  "Coding": {
+   "description": "",
+   "type": "object",
+   "properties": {
+    "code": {
+     "type": "string",
+     "description": "Symbol in syntax defined by the system"
+    },
+    "display": {
+     "type": "string",
+     "description": "Representation defined by the system"
+    },
+    "id": {
+     "type": "string",
+     "description": ""
+    },
+    "system": {
+     "type": "string",
+     "description": "Identity of the terminology system"
+    },
+    "userSelected": {
+     "type": "boolean",
+     "description": "If this coding was chosen directly by the user"
+    },
+    "version": {
+     "type": "string",
+     "description": "Version of the system - if relevant"
+    }
+   },
+   "required": [
+    "id"
+   ]
+  },
+  "Period": {
+   "description": "",
+   "type": "object",
+   "properties": {
+    "end": {
+     "type": "string",
+     "description": "End time with inclusive boundary, if not ongoing"
+    },
+    "id": {
+     "type": "string",
+     "description": ""
+    },
+    "start": {
+     "type": "string",
+     "description": "Starting time with inclusive boundary"
+    }
+   },
+   "required": [
+    "id"
+   ]
+  }
+ }
+}
