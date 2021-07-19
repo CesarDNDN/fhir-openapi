@@ -170,27 +170,25 @@ def saveSwagger(swagger,filePath,subsetPath,profileResources,irisDependencies):
             swaggerSubset['info']['title'] = 'FHIR R4 '+idName+' Resource'
             # modify name for paths
             idName = '/'+idName
-            print(idName)
+            # print(idName)
             # Adjust paths to only contain paths relevant to the ID
             if idName == '/CapabilityStatement':
                 continue #### SKIPPING CAPABILITY STATEMENT, ADDRESS WITH PATRICK ####
             swaggerSubset['paths'] = {key:swagger['paths'][key] for key in {idName,idName+'/{id}',idName+'/{id}/_history',idName+'/{id}/_history/{vid}'}}
             idName = idName[1:]
-            print(idName)
+            # print(idName)
             # Adjust tags to only contain the name of ID
             swaggerSubset['tags'] = [{'name':idName}]
             # Adjust components to only have relevant schema
             swaggerSubset['components'] = {'schemas':{key:swagger['components']['schemas'][key] for key in swagger['components']['schemas'].keys() if idName in key}}
             # Add security components to the subset
             swaggerSubset['components']['securitySchemes'] = swagger['components']['securitySchemes']
-            print('intersting')
             commonTypeList = irisDependencies[idName]
             commonTypeSchema = {commonTypeName:swagger['components']['schemas'][commonTypeName] for commonTypeName in commonTypeList}
             # update schema to contain common types written in dependencies
             ### COMMONTYPE SCHEMA WILL DOMINATE
             swaggerSubset['components']['schemas'].update(commonTypeSchema)
             # Save file based on folder specified
-            print('saveing')
             with open(subsetPath+"/"+idName+".json",'w') as f:
                 json.dump(swaggerSubset,f)
         return "SUCCESS"

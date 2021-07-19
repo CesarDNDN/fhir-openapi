@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+  <Document name="fhir-openapi-gen.ZPM">
+    <Module>
+      <Name>fhir-openapi-gen</Name>
+      <Version>0.3.0</Version>
+      <Description>FHIR OpenAPI Spec Generator</Description>
+      <Keywords>FHIR, OpenAPI</Keywords>
+      <Packaging>module</Packaging>
+      <Resource Name="FHIROpenAPI.PKG"/>
+      <Resource Name="IRISFHIRMetadata.MAC"/>
+      <SourcesRoot>src</SourcesRoot>
+      <FileCopy Name="Convert2to3/" Target="${mgrdir}fhir-openapi/pyconvert/"/>
+      <FileCopy Name="Annotate3/" Target="${mgrdir}fhir-openapi/pyannotate/"/>
+      <FileCopy Name="AddExample3/" Target="${mgrdir}fhir-openapi/pyexample/"/>
+      <FileCopy Name="fhir-swagger/" Target="${mgrdir}fhir-openapi/fhir-swagger/"/>
+      <FileCopy Name="definitions/" Target="${mgrdir}fhir-openapi/definitions/"/>
+      <FileCopy Name="examples/" Target="${mgrdir}fhir-openapi/examples/"/>
+      <FileCopy Name="output/" Target="${mgrdir}fhir-openapi/output/"/>
+      <!-- <FileCopy Name="workspaces/" Target="{mgrdir}fhir-openapi/workspaces/"/> -->
+    </Module>
+  </Document>
+</Export>

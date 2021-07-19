@@ -1,0 +1,185 @@
+ROUTINE IRISFHIRMetadata
+    set def={} //OpenAPI definitions
+    set dep={} //dependencies
+    set counter = 0
+    set loc = ^OpenAPISpec
+    set basePath = ^OpenAPIBasePath
+    //mapping FHIR primitive types to JSON
+    //https://www.hl7.org/fhir/datatypes.html
+    set dtMapping = {
+            "string": "string",
+            "boolean":"boolean",
+            "number":"number",
+            "integer":"number",
+            "positiveInt":"number",
+            "unsignedInt":"number",
+            "decimal":"number",
+            "canonical":"string", 
+            "date":"string", 
+            "dateTime":"string", 
+            "time":"string", 
+            "instant":"string",
+            "code":"string",
+            "id":"string", 
+            "oid":"string",
+            "base64Binary":"string", 
+            "markdown":"string",
+            "uuid":"string", 
+            "url":"string", 
+            "uri":"string",
+            "x-multi":"string" }
+    
+    set schema = $Order(^HS.FHIRServer.Meta(loc,"ti",""))
+    // OLD SCHEMA ACQUIRING set schema=$Order(^HS.FHIRServer.Meta("HL7v40","ti",""))
+    set elementsList=""
+    // keeps iterating through the loop until nothing is inside the schema
+    while schema'=""   {
+        set resourceType=$g(^HS.FHIRServer.Meta(loc,"ti",schema,"*dt"))
+        // if the next resource type is an element and the element is NOT inside our elements list, add it to our elements list
+        if (resourceType="Element")&&($listfind(elementsList,schema)=0) {
+            set elementsList=elementsList_$lb(schema)
+            }        
+        //"*dt" undef for "Element" and "Resource"
+        //write !,schema
+        // setting up the resource format for the schema.
+        set resourceJson = {
+            "description": "",
+            "type": "object",
+            "properties": {},
+            "required":["id"] }
+        // If schema does not contain a period, reset
+        set:(schema'[".") resourceDependencies="" //do not reset list for subschemas like TestReport.participant
+        
+        //Starting to acquire properties of the schema
+        set property=$Order(^HS.FHIRServer.Meta(loc,"ti",schema,""))
+        while property'="" { 
+            if $e(property)'="*" { //skip *dt,*pr,*rq
+                //^HS.FHIRServer.Meta(loc,"ti",schema,property,"jt")="o"
+                // setting up property json
+                set propertyJson={}
+                set type=$get(^HS.FHIRServer.Meta(loc,"ti",schema,property,"dt"))
+                set isArray=$get(^HS.FHIRServer.Meta(loc,"ti",schema,property,"arr"),0)
+                //if (type="boolean")||(type="string")||(type="integer")||(type="number")||(type="code") { //known atomic types
+                if (dtMapping.%Get(type)'="") { //known atomic types
+                    //write:(schema="Address") !," ",schema," - ",property," - ",type
+                    set propertyJson.type=dtMapping.%Get(type)
+                } elseif ($e(type)?1U) { //type starts with uppercase
+                    if isArray {
+                        set propertyJson.type="array"
+                        set propertyJson.items={}
+                        set propertyJson.items."$ref"="#/components/schemas/"_type
+                    } else {
+                        set propertyJson.type="object"
+                        set propertyJson.allOf=[]
+                        set refObject={"$ref":""}
+                        set refObject."$ref"="#/components/schemas/"_type
+                        do propertyJson.allOf.%Push(refObject)
+                            /*WORKING 
+                                "batch": {
+                                "description": "Details about packaged medications",
+                                "type": "object",
+                                "allOf": [ { "$ref": "#/definitions/Medication.batch"  } ]
+                                } 
+                            */
+                            /*CURRENT
+                                "batch": {
+                                "type": "object",
+                                "items": { "$ref": "#/definitions/Medication.batch" },
+                                "description": "Details about packaged medications"
+                                },
+                            */
+                    }
+                    // if the dependency hasn't been added to our list for the schema, append
+                    if $ListFind(resourceDependencies,type)=0 {
+                        set resourceDependencies=resourceDependencies_$lb(type)
+                    }
+                    //set propertyJson."$ref"="#/definitions/"_type
+                    //set propertyJson.items={"allOf":[{"$ref":""}]}
+                    //set arr=[{"a":122}]
+                    //w arr."0".a
+                    //set propertyJson.items.allOf."0"."$ref"="#/definitions/"_type
+                    //set propertyJson."$ref"="#/definitions/"_type
+                    //b
+                } else { //don't know how to handle data type
+                    write !,"Unhandeled data type: ",schema," - ",property," - ",type
+                    // Possbility to throw a warning. TODO
+                }
+
+                //manual override for Identifier/Relationship deadloop
+                if (schema="Identifier")&&(property="assigner") {
+                    set propertyJson={"type":"string"}
+                }
+
+                if (property'="extension")&&(property'="modifierExtension") { //prevent self-reference
+                    if (type="x-multi") {
+                    do resourceJson."properties".%Set(property_"[x]", propertyJson)
+                }
+                else{
+                    do resourceJson."properties".%Set(property, propertyJson)
+                }
+                }
+
+            }
+            elseif property = "*rq"{
+                set requiredProperty = $Order(^HS.FHIRServer.Meta(loc,"ti",schema,property,""))
+                while requiredProperty'=""{
+                    do resourceJson.required.%Push(requiredProperty)
+                    set requiredProperty = $Order(^HS.FHIRServer.Meta(loc,"ti",schema,property,requiredProperty))
+                    set counter = counter + 1
+                }
+            }
+            // find the next property to append and re-iterate
+            set property=$Order(^HS.FHIRServer.Meta(loc,"ti",schema,property))
+        }
+
+        // Add the new json block for the schema to our defintions object
+        do def.%Set(schema,resourceJson)
+
+        // Every schema will have these dependencies
+        if $ListFind(resourceDependencies,"Coding")=0 { set resourceDependencies=resourceDependencies_$lb("Coding") }
+        if $ListFind(resourceDependencies,"Period")=0 { set resourceDependencies=resourceDependencies_$lb("Period") }
+        
+        set dependenciesArray=[]
+        for i=1:1:$ll(resourceDependencies) {
+            do dependenciesArray.%Push($li(resourceDependencies,i))
+        }
+        // This may only get a single level of dependencies, unable to handle "TestReport.participant.Date" where there are multi level dependencies TODO
+        do dep.%Set($p(schema,".",1),dependenciesArray) //combine subschema into schema
+        
+        // Acquire the next schema after the current schema, will become "" once reaches the end.
+        set schema=$Order(^HS.FHIRServer.Meta(loc,"ti",schema)) 
+
+    }
+    // set up the core elements in the dependencies.
+    set elementsArray=[]
+    for i=1:1:$ll(elementsList) {
+        do elementsArray.%Push($li(elementsList,i))
+    }
+    do dep.%Set("elements",elementsArray) 
+
+
+    //zn "USER"
+    /*
+    zn "FHIRSERVER" zw ^HS.FHIRServer.Meta(loc,"ti","Observation") zn "USER"
+	*/
+    // Format the json file saving for Definitions and Dependencies
+    write !,"Saving..."
+    set jsonFormatter = ##class(%JSON.Formatter).%New()
+    do jsonFormatter.FormatToStream(def, .formattedDef)
+    set stream=##class(%Stream.FileCharacter).%New()
+	set sc=stream.LinkToFile(basePath_"\fhir-swagger\iris-global.json")
+    while 'formattedDef.AtEnd {
+        set sc=stream.Write(formattedDef.Read())
+    }
+    do stream.%Save()
+
+    set jsonFormatter = ##class(%JSON.Formatter).%New()
+    do jsonFormatter.FormatToStream(dep, .formattedDep)
+    set stream=##class(%Stream.FileCharacter).%New()
+	set sc=stream.LinkToFile(basePath_"\fhir-swagger\iris-dependencies.json")
+    while 'formattedDep.AtEnd {
+        set sc=stream.Write(formattedDep.Read())
+    }
+    write counter
+    do stream.%Save()
+    quit

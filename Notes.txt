@@ -1,0 +1,34 @@
+Full Pipeline Process:
+
+fhir-swagger --fhir_url "http://localhost:52774/csp/healthshare/fhirtest/fhir/r4" --conformance_path="/metadata?_format=application/json" --r4 --output fhir-swagger/swagger.json
+
+iris run irishealth ^IRISFHIRMetadata FHIRTest
+
+python3 Convert2to3/ConvertFile.py
+
+python3 Annotate3/AnnotateFiles.py
+
+python3 AddExample3/AddExamples.py
+
+portal deploy default
+
+Getting Info into Namespace:
+[6/14 1:34 PM] Anton Umnikov
+    
+
+zn "HSLIB"
+Do ##class(HS.HC.Util.Installer).InstallFoundation("USER")
+
+​[6/14 1:34 PM] Anton Umnikov
+    
+
+zn "USER"
+set schema = ##class(HS.FHIRServer.Schema).LoadSchema("HL7v40")
+
+Setting Globals for IRISFHIRMetadata routine:
+
+s ^OpenAPIBasePath = "c:\Users\cudran\Documents\GitHub\fhir-openapi"
+
+s ^OpenAPISpec = $lb("hl7.fhir.r4.core@4.0.1")
+
+

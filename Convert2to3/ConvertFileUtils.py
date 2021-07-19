@@ -17,9 +17,6 @@ def configureNewSwagger(source):
     scheme = target.pop('schemes')[0]
     host = target.pop('host')
     basePath = target.pop('basePath')
-    print(host)
-    print(basePath)
-    host = "fhir.pskykpxb.static-test-account.isccloud.io"
     target['servers'] = [{'url':scheme+"://"+host+basePath}]
 
     #move the definitions into a different subpath
