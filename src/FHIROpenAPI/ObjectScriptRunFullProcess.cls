@@ -55,6 +55,8 @@ Class FHIROpenAPI.ObjectScriptRunFullProcess
         return sc
     }
 
+    
+
     /// Entire Process
     ClassMethod RunFullProcess() As %Status
     {
@@ -65,6 +67,17 @@ Class FHIROpenAPI.ObjectScriptRunFullProcess
         s sc = ..RunPythonConversion(errName)
         s sc = ..RunPythonAnnotation(errName)
         s sc = ..RunPythonExemplify(errName)
+        w "Saving into Final Save Path..."
+        s finalSave = ^FHIRSavePath
+        s file = ##class(%File).%New(^OpenAPIBasePath_"\output\openapi3.json")
+        do file.Open("RS")
+        s json = {}.%FromJSON(file)
+        s finalFile = ##class(%File).%New(^FHIRSavePath_"\FHIRSpec.json")
+        do finalFile.Open("WSN")
+        do json.%ToJSON(finalFile)
+        d file.Close()
+        d finalFile.Close()
+        w "SUCCESS"
         Return sc
     }
 }
