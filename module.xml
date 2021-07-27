@@ -3,7 +3,7 @@
   <Document name="fhir-openapi-gen.ZPM">
     <Module>
       <Name>fhir-openapi-gen</Name>
-      <Version>0.3.0</Version>
+      <Version>0.4.1</Version>
       <Description>FHIR OpenAPI Spec Generator</Description>
       <Keywords>FHIR, OpenAPI</Keywords>
       <Packaging>module</Packaging>

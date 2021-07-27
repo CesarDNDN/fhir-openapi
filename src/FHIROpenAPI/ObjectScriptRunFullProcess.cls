@@ -6,7 +6,7 @@ Class FHIROpenAPI.ObjectScriptRunFullProcess
     {
         set sc = $$$OK
         set serverPath = ^FHIRServerPath
-        s savePath = $System.Util.ManagerDirectory()_"fhir-openapi\fhir-swagger\swagger.json"
+        s savePath = $System.Util.ManagerDirectory()_"fhir-openapi/fhir-swagger/swagger.json"
         s tCommand = "fhir-swagger --fhir_url "_$C(34)_serverPath_$C(34)_" --conformance_path="_$C(34)_"/metadata?_format=application/json"_$C(34)_" --r4 --output "_savePath
         w tCommand, !
         s sc = $ZF(-100,"/SHELL/NOQUOTE/STDERR="_$C(34)_errName_$C(34),tCommand)
@@ -17,7 +17,6 @@ Class FHIROpenAPI.ObjectScriptRunFullProcess
     ClassMethod RunMetadataRoutine() As %Status
     {
         set sc = $$$OK
-        s ^OpenAPIBasePath = $System.Util.ManagerDirectory()_"fhir-openapi"
         do ^IRISFHIRMetadata
         return sc
     }
@@ -25,7 +24,7 @@ Class FHIROpenAPI.ObjectScriptRunFullProcess
     ClassMethod RunPythonConversion(errName) As %Status
     {
         set sc = $$$OK
-        s convertPath = ^OpenAPIBasePath_"\pyconvert\ConvertFile.py"
+        s convertPath = ^OpenAPIBasePath_"/pyconvert/ConvertFile.py"
         s tCommand = "python3 "_convertPath
         w tCommand, !
         s sc = $ZF(-100,"/SHELL/NOQUOTE/STDERR="_$C(34)_errName_$C(34),tCommand)
@@ -36,7 +35,7 @@ Class FHIROpenAPI.ObjectScriptRunFullProcess
     ClassMethod RunPythonAnnotation(errName) As %Status
     {
         set sc = $$$OK
-        s convertPath = ^OpenAPIBasePath_"\pyannotate\AnnotateFiles.py"
+        s convertPath = ^OpenAPIBasePath_"/pyannotate/AnnotateFiles.py"
         s tCommand = "python3 "_convertPath
         w tCommand, !
         s sc = $ZF(-100,"/SHELL/NOQUOTE/STDERR="_$C(34)_errName_$C(34),tCommand)
@@ -47,7 +46,7 @@ Class FHIROpenAPI.ObjectScriptRunFullProcess
     ClassMethod RunPythonExemplify(errName) As %Status
     {
         set sc = $$$OK
-        s convertPath = ^OpenAPIBasePath_"\pyexample\AddExamples.py"
+        s convertPath = ^OpenAPIBasePath_"/pyexample/AddExamples.py"
         s tCommand = "python3 "_convertPath
         w tCommand, !
         s sc = $ZF(-100,"/SHELL/NOQUOTE/STDERR="_$C(34)_errName_$C(34),tCommand)
@@ -69,15 +68,46 @@ Class FHIROpenAPI.ObjectScriptRunFullProcess
         s sc = ..RunPythonExemplify(errName)
         w "Saving into Final Save Path..."
         s finalSave = ^FHIRSavePath
-        s file = ##class(%File).%New(^OpenAPIBasePath_"\output\openapi3.json")
+        s file = ##class(%File).%New(^OpenAPIBasePath_"/output/openapi3.json")
         do file.Open("RS")
         s json = {}.%FromJSON(file)
-        s finalFile = ##class(%File).%New(^FHIRSavePath_"\FHIRSpec.json")
+        s finalFile = ##class(%File).%New(^FHIRSavePath_"/FHIRSpec.json")
         do finalFile.Open("WSN")
         do json.%ToJSON(finalFile)
         d file.Close()
         d finalFile.Close()
         w "SUCCESS"
         Return sc
+    }
+
+    ClassMethod RunPreprocess() As %Status
+    {
+        set sc = $$$OK
+        s done = 1
+        while (done =1){
+            s ^OpenAPIBasePath = $System.Util.ManagerDirectory()_"fhir-openapi"
+            w "Please Input your Server Path as http://<path/to/your/FHIRServer>", !, "Ex: http://localhost:8002/r4",! ,"Below:",!
+            r temppath
+            w !, "Please Input your FHIRNamespace name Below:",! r tempnamespace
+            w !,"Please Input your Metadata Spec Key",!,"Default is $lb(""hl7.fhir.r4.core@4.0.1"")",!,"Below:",!
+            r tempspec
+            if tempspec=""
+            {
+                s tempspec = $lb("hl7.fhir.r4.core@4.0.1")
+            }
+            w !,"Current parameters entered:",!,"Path:",temppath,!,"Spec Key:",tempspec,!,"Namespace:",tempnamespace,!
+            w !,"Enter 0 if correct, 1 if need to retry",!
+            r done
+        }
+        zn "HSLIB"
+        do ##class(HS.HC.Util.Installer).InstallFoundation(tempnamespace)
+        zn tempnamespace
+        set schema = ##class(HS.FHIRServer.Schema).LoadSchema("HL7v40")
+        s ^FHIRServerPath = temppath
+        s ^OpenAPISpec = tempspec
+        // Skipping SavePath configuration for now, the final save path is in the database.
+        s ^FHIRSavePath = "."
+        return sc
+
     }
 }
