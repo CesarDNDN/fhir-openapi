@@ -10,9 +10,9 @@ And generates fully annotated OpenAPI v3 spec for all 133 resources and one "MEG
 There are four steps:
 - Generate basic swagger2 spec, based on metadata (java code from 3rd party repo)
 - Extract data from ^HS.FHIRServer.Meta global (object script)
-- Convert Swagger2 to OpenAPI 3 spec (node.js)
-- Annotate spec with data from hl7.org site, merge with data extracted from global, generate 133 resource-specific and 1 "megaspec" (node.js)
-- add examples from hl4.org to resource - specific specs (node.js)
+- Convert Swagger2 to OpenAPI 3 spec (python)
+- Annotate spec with data from hl7.org site, merge with data extracted from global, generate 133 resource-specific and 1 "megaspec" (python)
+- add examples from hl4.org to resource - specific specs (python)
 
 ```bash
 # FHIR Swagger
@@ -46,7 +46,7 @@ FHIRNAMESPACE>do ^IRISFHIRMetadata
 # - ./fhir-swagger/iris-swagger.json
 # target:
 # - ./fhir-swagger/iris-openapi3.json
-node convert.js
+python3 Convert2to3/ConvertFile.py
 
 # annotate - enhance OpenAPI definitions with descriptions from hl7.org
 # merge with data from ^HS.FHIR.Meta global
@@ -57,9 +57,9 @@ node convert.js
 # - ./fhir-swagger/iris-dependencies.json
 # - ./definitions.json/*.json - FHIR definitions from hl7.org
 # targets:
-# - ./output/swagger2.json "megaspec"
+# - ./output/openapi3.json "megaspec"
 # - ./output/<resource name>.json 133 small, resource - specific specs
-node annotate.js
+python3 Annotate3/AnnotateFiles.py
 
 # add payload examples to resource OpenAPI specs
 # sources:
@@ -67,7 +67,14 @@ node annotate.js
 # - ./examples-json/*.json - FHIR examples from hl7.org
 # targets:
 # - ./output/<resource name>.json
-node add-examples.js
+python3 AddExample3/AddExamples.py
+
+# Full process can also be run using ObjectScript Full Process/Preprocessing code
+iris session iris
+zn FHIRNAMESPACE
+FHIRNAMESPACE> do ##class(FHIROpenAPI.Generator).Preprocess()
+# Follow preprocessing instructions
+FHIRNAMESPACE> do ##class(FHIROpenAPI.Generator).Run()
 ```
 
 Additional static files:
