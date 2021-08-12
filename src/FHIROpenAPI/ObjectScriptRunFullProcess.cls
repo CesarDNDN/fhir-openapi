@@ -99,15 +99,14 @@ Class FHIROpenAPI.ObjectScriptRunFullProcess
         }
         w "Saving into Final Save Path... (Path: "_^FHIRSavePath_")",!
 
-        s finalSave = ^FHIRSavePath
-        s file = ##class(%File).%New(^OpenAPIBasePath_"/output/openapi3.json")
-        do file.Open("RS")
-        s json = {}.%FromJSON(file)
-        s finalFile = ##class(%File).%New(^FHIRSavePath_"/FHIRSpec.json")
-        do finalFile.Open("WSN")
-        do json.%ToJSON(finalFile)
-        d file.Close()
-        d finalFile.Close()
+        s finalSave = ^FHIRSavePath_"/FHIRSpec.json"
+        s ogSave = ^OpenAPIBasePath_"/output/openapi3.json"
+        d ##class(%File).CopyFile(ogSave,finalSave,0,.sc)
+        if (sc < 0)
+        {
+            w "Error encountered during saving."
+            return sc
+        }
         w "SUCCESS"
         Return sc
     }
