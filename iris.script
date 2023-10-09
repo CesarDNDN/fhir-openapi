@@ -1,0 +1,30 @@
+zn "%SYS"
+do ##class(Security.Users).UnExpireUserPasswords("*")
+
+zn "USER"
+zpm "install webterminal"
+zpm "install fhir-openapi-gen"
+
+set pNamespace="FHIRSERVER"
+zn "HSLIB"
+do ##class(HS.Util.Installer.Foundation).Install(pNamespace)
+do ##class(HS.FHIRServer.Installer).InstallNamespace(pNamespace)
+zn pNamespace
+
+set tFHIRApp = "/csp/healthshare/fhirserver/fhir/r4"
+set tStrategyClass = "HS.FHIRServer.Storage.Json.InteractionsStrategy"
+set tMetadataConfigKey = "HL7v40"
+do ##class(HS.FHIRServer.Installer).InstallInstance(tFHIRApp, tStrategyClass, tMetadataConfigKey,"",0)
+
+set strategy = ##class(HS.FHIRServer.API.InteractionsStrategy).GetStrategyForEndpoint(tFHIRApp) 
+Set configData = strategy.GetServiceConfigData() 
+Set configData.DebugMode = 4
+do strategy.SaveServiceConfigData(configData)
+
+zn "HSCUSTOM"
+zpm "install fhir-openapi-gen"
+
+
+
+
+halt

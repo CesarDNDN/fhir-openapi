@@ -1,0 +1,992 @@
+
+D:\GitHub\PR_fhir-openapi>docker compose --progress plain build
+#0 building with "default" instance using docker driver
+
+#1 [iris internal] load build definition from Dockerfile
+#1 DONE 0.0s
+
+#1 [iris internal] load build definition from Dockerfile
+#1 transferring dockerfile: 762B done
+#1 DONE 0.0s
+
+#2 [iris internal] load .dockerignore
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#3 [iris internal] load metadata for docker.io/intersystemsdc/irishealth-community:latest
+#3 DONE 1.3s
+
+#4 [iris  1/11] FROM docker.io/intersystemsdc/irishealth-community@sha256:cf82fc0206b159d7e187b1d7038624db562c5a82551
+8ce292bc396724523af26
+#4 DONE 0.0s
+
+#5 [iris internal] load build context
+#5 transferring context: 1.14kB 0.0s done
+#5 DONE 0.0s
+
+#6 [iris  4/11] RUN npm install -g fhir-swagger
+#6 CACHED
+
+#7 [iris  7/11] COPY src src
+#7 CACHED
+
+#8 [iris  2/11] RUN apt-get update -yq     && apt-get -yq install curl gnupg ca-certificates     && curl -L https://d
+eb.nodesource.com/setup_18.x | bash     && apt-get update -yq
+#8 CACHED
+
+#9 [iris  5/11] WORKDIR /opt/irisapp
+#9 CACHED
+
+#10 [iris  6/11] RUN chown irisowner:irisowner /opt/irisapp
+#10 CACHED
+
+#11 [iris  3/11] RUN apt-get install -yq         ruby         ruby-dev         nodejs         python3         git
+#11 CACHED
+
+#12 [iris  8/11] COPY module.xml module.xml
+#12 CACHED
+
+#13 [iris  9/11] COPY iris.script iris.script
+#13 DONE 0.2s
+
+#14 [iris 10/11] RUN iris start IRIS    && iris session IRIS < iris.script     && iris stop IRIS quietly
+#14 0.608 Using 'iris.cpf' configuration file
+#14 1.147
+#14 1.234 Starting Control Process
+#14 1.234 Global buffer setting requires attention.  Auto-selected 25% of total memory.
+#14 1.234 Allocated 1713MB shared memory
+#14 1.234 953MB global buffers, 300MB routine buffers
+#14 2.900 This copy of InterSystems IRIS has been licensed for use exclusively by:
+#14 2.900 InterSystems IRIS Community
+#14 2.900 Copyright (c) 1986-2023 by InterSystems Corporation
+#14 2.900 Any other use is a violation of your license agreement
+#14 158.8
+#14 158.8 1 alert(s) during startup. See messages.log for details.
+#14 158.9 Starting IRIS
+#14 158.9
+#14 159.2
+#14 159.2 Node: buildkitsandbox, Instance: IRIS
+#14 159.2
+#14 159.2 USER>
+#14 159.2
+#14 159.2 %SYS>
+#14 161.1
+#14 161.1 %SYS>
+#14 161.1
+#14 161.1 %SYS>
+#14 161.1
+#14 161.1 USER>
+#14 167.7
+#14 167.7 [USER|webterminal]    Reload START (/usr/irissys/mgr/.modules/USER/webterminal/4.9.6/)
+#14 169.1 [USER|webterminal]    Reload SUCCESS
+#14 169.1 [webterminal] Module object refreshed.
+#14 169.1 [USER|webterminal]    Validate START
+#14 169.1 [USER|webterminal]    Validate SUCCESS
+#14 169.1 [USER|webterminal]    Compile START
+#14 170.3 Installing WebTerminal application to USER
+#14 170.3 Creating WEB application "/terminal"...
+#14 170.4 WEB application "/terminal" is created.
+#14 170.4 Assigning role %DB_IRISSYS to a web application; resulting roles: :%DB_IRISSYS:%DB_USER
+#14 170.4 Creating WEB application "/terminalsocket"...
+#14 170.4 WEB application "/terminalsocket" is created.
+#14 170.4 Mapping %WebTerminal package into all namespaces: %All
+#14 173.3 WebTerminal package successfully mapped into all namespaces.
+#14 173.5 [USER|webterminal]    Compile SUCCESS
+#14 173.5 [USER|webterminal]    Activate START
+#14 173.6 [USER|webterminal]    Configure START
+#14 173.7 [USER|webterminal]    Configure SUCCESS
+#14 173.7 [USER|webterminal]    Activate SUCCESS
+#14 173.8 USER>
+#14 181.1
+#14 181.1 [USER|fhir-openapi-gen]       Reload START (/usr/irissys/mgr/.modules/USER/fhir-openapi-gen/0.4.4/)
+#14 181.4 [USER|fhir-openapi-gen]       Reload SUCCESS
+#14 181.4 [fhir-openapi-gen]    Module object refreshed.
+#14 181.4 [USER|fhir-openapi-gen]       Validate START
+#14 181.4 [USER|fhir-openapi-gen]       Validate SUCCESS
+#14 181.4 [USER|fhir-openapi-gen]       Compile START
+#14 181.5 [USER|fhir-openapi-gen]       Compile SUCCESS
+#14 181.5 [USER|fhir-openapi-gen]       Activate START
+#14 181.7 [USER|fhir-openapi-gen]       Configure START
+#14 181.7 [USER|fhir-openapi-gen]       Configure SUCCESS
+#14 181.7 [USER|fhir-openapi-gen]       Activate SUCCESS
+#14 181.8 USER>
+#14 181.8
+#14 181.8 USER>
+#14 181.8
+#14 181.8 USER>
+#14 181.8
+#14 181.8 HSLIB>
+#14 182.0
+#14 182.0 HS.Util.Installer.Foundation:Install ========== START: Namespace Activation ==========
+#14 182.0 HS.Util.Installer.Foundation:CheckPrivileges User 'irisowner' has %Admin_Manage:USE privilege
+#14 182.3 HS.Util.Installer.Foundation:SecureInstall tComponent Foundation = FHIRSERVER
+#14 182.3 HS.Util.Installer.Foundation:CreateDatabaseAndNamespace About to Create Database FHIRSERVER
+#14 183.8 HS.Util.Installer.Foundation:CreateDatabaseAndNamespace Created IRIS.DAT in /usr/irissys/mgr/FHIRSERVER
+#14 184.0 HS.Util.Installer.Foundation:CreateDatabaseAndNamespace Made Namespace FHIRSERVER
+#14 185.7 HS.HC.Util.Installer:EnableEnsemble Created Ensemble Mappings
+#14 185.9 HS.HC.Util.Installer:EnableEnsemble Configuration Loaded
+#14 187.1 HS.HC.Util.Installer:EnableEnsemble Compiling Ensemble DeepSee Dashboard
+#14 187.2 HS.HC.Util.Installer:EnableEnsemble Ensemble Enabled
+#14 187.5 HS.Util.Installer.Foundation:SecureInstall Added Package mappings HS,HSMOD,SchemaMap,%pkg.isc
+#14 187.5 HS.Util.Installer.Foundation:SecureInstall Added include mappings HSMOD.*,SchemaMap*,%pkg.isc.*
+#14 188.2 HS.Util.Installer.Foundation:BuildPortalApp Created Portal CSP app
+#14 189.4 HS.Util.Installer.Foundation:CreateProduction Compiled template FHIRSERVERPKG.FoundationProduction
+#14 189.5 HS.Util.Installer.Foundation:AdditionalSetup Set Credential HS_Services
+#14 189.8 Running HS.Util.Installer.Kit.PostInstall.SetupOIDRegistry:RunHub(FHIRSERVER)
+#14 190.5 Ran HS.Util.Installer.Kit.PostInstall.SetupOIDRegistry:RunHub with status OK
+#14 190.5 Running HS.Util.Installer.Kit.PostInstall.AssignAuthTypes:RunHub(FHIRSERVER)
+#14 191.0 Ran HS.Util.Installer.Kit.PostInstall.AssignAuthTypes:RunHub with status OK
+#14 192.4 HS.Util.Installer.Foundation:SecureInstall Recompiled XML extension classesSaving hl7.fhir.r3.core@3.0.2
+#14 192.6 Saving hl7.fhir.r4.core@4.0.1
+#14 192.6 Saving hl7.fhir.us.core@3.1.0
+#14 192.6 Load Resources: hl7.fhir.r3.core@3.0.2
+#14 312.3 Load Resources: hl7.fhir.r4.core@4.0.1
+#14 352.6 Resource Used in Multiple Packages: http://dicom.nema.org/resources/ontology/DCM|01(hl7.fhir.r3.core@3.0.2,hl7.
+fhir.r4.core@4.0.1)
+#14 369.8 Resource Used in Multiple Packages: http://healthit.gov/nhin/purposeofuse|2.0(hl7.fhir.r3.core@3.0.2,hl7.fhir.r
+4.core@4.0.1)
+#14 403.5 Load Resources: hl7.fhir.us.core@3.1.0
+#14 406.8
+#14 406.8 HS.FHIRServer.Installer:InstallNamespace Created FHIR web application
+#14 406.8 HS.FHIRServer.Installer:InstallNamespace Created FHIR API web application
+#14 407.3 HS.FHIRServer.Installer:InstallNamespace Created FHIR Purge Expired Search Results Task
+#14 407.3 Load of directory started on 10/09/2023 20:02:27
+#14 407.6
+#14 407.6 Loading file /usr/irissys/dev/fhir/gbl/XFConfig.xml as xml
+#14 407.6 Imported global: ^HS.XF.Config
+#14 407.6 Loading file /usr/irissys/dev/fhir/gbl/XFReferenceField.xml as xml
+#14 407.6 Imported global: ^HS.XF.ReferenceField
+#14 407.6 Loading file /usr/irissys/dev/fhir/gbl/XFReferenceType.xml as xml
+#14 407.6 Imported global: ^HS.XF.ReferenceType
+#14 407.7 Loading file /usr/irissys/dev/fhir/gbl/XFTransform.xml as xml
+#14 407.7 Imported global: ^HS.XF.Transform
+#14 407.7 Loading file /usr/irissys/dev/fhir/gbl/XFValueSet.xml as xml
+#14 407.7 Imported global: ^HS.XF.ValueSet
+#14 407.7 Load finished successfully.
+#14 408.1
+#14 408.1 HS.BulkFHIR.Installer:Setup Starting
+#14 408.6 HS.BulkFHIR.Installer:Setup Completed
+#14 412.9 HS.Util.Installer.Foundation:SecureInstall Install FHIRSERVER done at 2023-10-09 20:02:33
+#14 412.9 HS.Util.Installer.Foundation:Install ========== END: Namespace Activation ==========
+#14 412.9 HS.Util.Installer.Foundation:Install
+#14 412.9 HSLIB>
+#14 413.0
+#14 413.0 HS.FHIRServer.Installer:InstallNamespace Created FHIR web application
+#14 413.0 HS.FHIRServer.Installer:InstallNamespace Created FHIR API web application
+#14 413.0 HS.FHIRServer.Installer:InstallNamespace Created FHIR Purge Expired Search Results Task
+#14 413.0 HSLIB>
+#14 413.0
+#14 413.0 FHIRSERVER>
+#14 413.0
+#14 413.0 FHIRSERVER>
+#14 413.0
+#14 413.0 FHIRSERVER>
+#14 413.0
+#14 413.0 FHIRSERVER>
+#14 413.0
+#14 413.0 FHIRSERVER>
+#14 432.5 Meta: 15980@HS.FHIRMeta.Impl.Impl, repo: 1, svc: 1
+#14 433.6 Generating Tables
+#14 433.6
+#14 433.6 Saving: HSFHIR.X0001.R.Rsrc
+#14 433.7 Saving: HSFHIR.X0001.V.RsrcVer
+#14 433.7 Compiling HSFHIR.X0001.R.*...
+#14 433.7 Compilation started on 10/09/2023 20:02:53 with qualifiers 'e'
+#14 433.7 Compiling class HSFHIR.X0001.R.Rsrc
+#14 434.2 Compiling table HSFHIR_X0001_R.Rsrc
+#14 434.3 Compiling routine HSFHIR.X0001.R.Rsrc.1
+#14 434.5 Compilation finished successfully in 0.849s.
+#14 434.5
+#14 434.5 Compilation started on 10/09/2023 20:02:54 with qualifiers 'e'
+#14 434.5 Compiling class HSFHIR.X0001.V.RsrcVer
+#14 434.6 Compiling table HSFHIR_X0001_V.RsrcVer
+#14 434.6 Compiling routine HSFHIR.X0001.V.RsrcVer.1
+#14 434.7 Compilation finished successfully in 0.163s.
+#14 434.7
+#14 434.7 Generating HSFHIR.X0001.S.*...
+#14 434.7 PackageDefinition for 'HSFHIR.X0001.S' created
+#14 434.9 Saving: HSFHIR.X0001.S.Account
+#14 435.1 Saving: HSFHIR.X0001.S.ActivityDefinition.contextQuantity
+#14 435.1 Saving: HSFHIR.X0001.S.ActivityDefinition
+#14 435.1 Saving: HSFHIR.X0001.S.AdverseEvent
+#14 435.1 Saving: HSFHIR.X0001.S.AllergyIntolerance
+#14 435.1 Saving: HSFHIR.X0001.S.Appointment
+#14 435.1 Saving: HSFHIR.X0001.S.AppointmentResponse
+#14 435.2 Saving: HSFHIR.X0001.S.AuditEvent
+#14 435.2 Saving: HSFHIR.X0001.S.Basic
+#14 435.2 Saving: HSFHIR.X0001.S.Binary
+#14 435.2 Saving: HSFHIR.X0001.S.BiologicallyDerivedProduct
+#14 435.2 Saving: HSFHIR.X0001.S.BodyStructure
+#14 435.2 Saving: HSFHIR.X0001.S.Bundle
+#14 435.2 Saving: HSFHIR.X0001.S.CapabilityStatement.contextQuantity
+#14 435.2 Saving: HSFHIR.X0001.S.CapabilityStatement
+#14 435.2 Saving: HSFHIR.X0001.S.CarePlan
+#14 435.2 Saving: HSFHIR.X0001.S.CareTeam
+#14 435.2 Saving: HSFHIR.X0001.S.CatalogEntry
+#14 435.2 Saving: HSFHIR.X0001.S.ChargeItem
+#14 435.3 Saving: HSFHIR.X0001.S.ChargeItemDefinition.contextQuantity
+#14 435.3 Saving: HSFHIR.X0001.S.ChargeItemDefinition
+#14 435.3 Saving: HSFHIR.X0001.S.Claim
+#14 435.3 Saving: HSFHIR.X0001.S.ClaimResponse
+#14 435.3 Saving: HSFHIR.X0001.S.ClinicalImpression
+#14 435.3 Saving: HSFHIR.X0001.S.CodeSystem.contextQuantity
+#14 435.3 Saving: HSFHIR.X0001.S.CodeSystem
+#14 435.3 Saving: HSFHIR.X0001.S.Communication
+#14 435.3 Saving: HSFHIR.X0001.S.CommunicationRequest
+#14 435.3 Saving: HSFHIR.X0001.S.CompartmentDefinition.contextQuantity
+#14 435.4 Saving: HSFHIR.X0001.S.CompartmentDefinition
+#14 435.4 Saving: HSFHIR.X0001.S.Composition
+#14 435.4 Saving: HSFHIR.X0001.S.ConceptMap.contextQuantity
+#14 435.4 Saving: HSFHIR.X0001.S.ConceptMap
+#14 435.4 Saving: HSFHIR.X0001.S.Condition.abatementAge
+#14 435.4 Saving: HSFHIR.X0001.S.Condition.onsetAge
+#14 435.4 Saving: HSFHIR.X0001.S.Condition
+#14 435.4 Saving: HSFHIR.X0001.S.Consent
+#14 435.4 Saving: HSFHIR.X0001.S.Contract
+#14 435.4 Saving: HSFHIR.X0001.S.Coverage
+#14 435.5 Saving: HSFHIR.X0001.S.CoverageEligibilityRequest
+#14 435.5 Saving: HSFHIR.X0001.S.CoverageEligibilityResponse
+#14 435.5 Saving: HSFHIR.X0001.S.DetectedIssue
+#14 435.5 Saving: HSFHIR.X0001.S.Device
+#14 435.5 Saving: HSFHIR.X0001.S.DeviceDefinition
+#14 435.5 Saving: HSFHIR.X0001.S.DeviceMetric
+#14 435.5 Saving: HSFHIR.X0001.S.DeviceRequest
+#14 435.5 Saving: HSFHIR.X0001.S.DeviceUseStatement
+#14 435.5 Saving: HSFHIR.X0001.S.DiagnosticReport
+#14 435.5 Saving: HSFHIR.X0001.S.DocumentManifest
+#14 435.6 Saving: HSFHIR.X0001.S.DocumentReference
+#14 435.6 Saving: HSFHIR.X0001.S.EffectEvidenceSynthesis.contextQuantity
+#14 435.6 Saving: HSFHIR.X0001.S.EffectEvidenceSynthesis
+#14 435.6 Saving: HSFHIR.X0001.S.Encounter
+#14 435.6 Saving: HSFHIR.X0001.S.Endpoint
+#14 435.6 Saving: HSFHIR.X0001.S.EnrollmentRequest
+#14 435.6 Saving: HSFHIR.X0001.S.EnrollmentResponse
+#14 435.6 Saving: HSFHIR.X0001.S.EpisodeOfCare
+#14 435.6 Saving: HSFHIR.X0001.S.EventDefinition.contextQuantity
+#14 435.6 Saving: HSFHIR.X0001.S.EventDefinition
+#14 435.7 Saving: HSFHIR.X0001.S.Evidence.contextQuantity
+#14 435.7 Saving: HSFHIR.X0001.S.Evidence
+#14 435.7 Saving: HSFHIR.X0001.S.EvidenceVariable.contextQuantity
+#14 435.7 Saving: HSFHIR.X0001.S.EvidenceVariable
+#14 435.7 Saving: HSFHIR.X0001.S.ExampleScenario.contextQuantity
+#14 435.7 Saving: HSFHIR.X0001.S.ExampleScenario
+#14 435.7 Saving: HSFHIR.X0001.S.ExplanationOfBenefit
+#14 435.7 Saving: HSFHIR.X0001.S.FamilyMemberHistory
+#14 435.7 Saving: HSFHIR.X0001.S.Flag
+#14 435.7 Saving: HSFHIR.X0001.S.Goal
+#14 435.7 Saving: HSFHIR.X0001.S.GraphDefinition.contextQuantity
+#14 435.7 Saving: HSFHIR.X0001.S.GraphDefinition
+#14 435.8 Saving: HSFHIR.X0001.S.Group
+#14 435.8 Saving: HSFHIR.X0001.S.GuidanceResponse
+#14 435.8 Saving: HSFHIR.X0001.S.HealthcareService
+#14 435.8 Saving: HSFHIR.X0001.S.ImagingStudy
+#14 435.8 Saving: HSFHIR.X0001.S.Immunization
+#14 435.8 Saving: HSFHIR.X0001.S.ImmunizationEvaluation
+#14 435.8 Saving: HSFHIR.X0001.S.ImmunizationRecommendation
+#14 435.8 Saving: HSFHIR.X0001.S.ImplementationGuide.contextQuantity
+#14 435.8 Saving: HSFHIR.X0001.S.ImplementationGuide
+#14 435.8 Saving: HSFHIR.X0001.S.InsurancePlan
+#14 435.9 Saving: HSFHIR.X0001.S.Invoice
+#14 435.9 Saving: HSFHIR.X0001.S.Library.contextQuantity
+#14 435.9 Saving: HSFHIR.X0001.S.Library
+#14 435.9 Saving: HSFHIR.X0001.S.Linkage
+#14 435.9 Saving: HSFHIR.X0001.S.List
+#14 435.9 Saving: HSFHIR.X0001.S.Location
+#14 435.9 Saving: HSFHIR.X0001.S.Measure.contextQuantity
+#14 435.9 Saving: HSFHIR.X0001.S.Measure
+#14 435.9 Saving: HSFHIR.X0001.S.MeasureReport
+#14 435.9 Saving: HSFHIR.X0001.S.Media
+#14 435.9 Saving: HSFHIR.X0001.S.Medication
+#14 436.0 Saving: HSFHIR.X0001.S.MedicationAdministration
+#14 436.0 Saving: HSFHIR.X0001.S.MedicationDispense
+#14 436.0 Saving: HSFHIR.X0001.S.MedicationKnowledge
+#14 436.0 Saving: HSFHIR.X0001.S.MedicationRequest
+#14 436.0 Saving: HSFHIR.X0001.S.MedicationStatement
+#14 436.0 Saving: HSFHIR.X0001.S.MedicinalProduct
+#14 436.0 Saving: HSFHIR.X0001.S.MedicinalProductAuthorization
+#14 436.0 Saving: HSFHIR.X0001.S.MedicinalProductContraindication
+#14 436.0 Saving: HSFHIR.X0001.S.MedicinalProductIndication
+#14 436.0 Saving: HSFHIR.X0001.S.MedicinalProductIngredient
+#14 436.1 Saving: HSFHIR.X0001.S.MedicinalProductInteraction
+#14 436.1 Saving: HSFHIR.X0001.S.MedicinalProductManufactured
+#14 436.1 Saving: HSFHIR.X0001.S.MedicinalProductPackaged
+#14 436.1 Saving: HSFHIR.X0001.S.MedicinalProductPharmaceutical
+#14 436.1 Saving: HSFHIR.X0001.S.MedicinalProductUndesirableEffect
+#14 436.1 Saving: HSFHIR.X0001.S.MessageDefinition.contextQuantity
+#14 436.1 Saving: HSFHIR.X0001.S.MessageDefinition
+#14 436.1 Saving: HSFHIR.X0001.S.MessageHeader
+#14 436.1 Saving: HSFHIR.X0001.S.MolecularSequence
+#14 436.1 Saving: HSFHIR.X0001.S.NamingSystem.contextQuantity
+#14 436.1 Saving: HSFHIR.X0001.S.NamingSystem
+#14 436.1 Saving: HSFHIR.X0001.S.NutritionOrder
+#14 436.1 Saving: HSFHIR.X0001.S.Observation.comboValueQuantity
+#14 436.1 Saving: HSFHIR.X0001.S.Observation.componentValueQuantity
+#14 436.2 Saving: HSFHIR.X0001.S.Observation.valueQuantity
+#14 436.2 Saving: HSFHIR.X0001.S.Observation
+#14 436.2 Saving: HSFHIR.X0001.S.ObservationDefinition
+#14 436.2 Saving: HSFHIR.X0001.S.OperationDefinition.contextQuantity
+#14 436.2 Saving: HSFHIR.X0001.S.OperationDefinition
+#14 436.2 Saving: HSFHIR.X0001.S.OperationOutcome
+#14 436.2 Saving: HSFHIR.X0001.S.Organization
+#14 436.2 Saving: HSFHIR.X0001.S.OrganizationAffiliation
+#14 436.2 Saving: HSFHIR.X0001.S.Patient
+#14 436.2 Saving: HSFHIR.X0001.S.PaymentNotice
+#14 436.2 Saving: HSFHIR.X0001.S.PaymentReconciliation
+#14 436.3 Saving: HSFHIR.X0001.S.Person
+#14 436.3 Saving: HSFHIR.X0001.S.PlanDefinition.contextQuantity
+#14 436.3 Saving: HSFHIR.X0001.S.PlanDefinition
+#14 436.3 Saving: HSFHIR.X0001.S.Practitioner
+#14 436.3 Saving: HSFHIR.X0001.S.PractitionerRole
+#14 436.3 Saving: HSFHIR.X0001.S.Procedure
+#14 436.3 Saving: HSFHIR.X0001.S.Provenance
+#14 436.3 Saving: HSFHIR.X0001.S.Questionnaire.contextQuantity
+#14 436.3 Saving: HSFHIR.X0001.S.Questionnaire
+#14 436.4 Saving: HSFHIR.X0001.S.QuestionnaireResponse
+#14 436.4 Saving: HSFHIR.X0001.S.RelatedPerson
+#14 436.4 Saving: HSFHIR.X0001.S.RequestGroup
+#14 436.4 Saving: HSFHIR.X0001.S.ResearchDefinition.contextQuantity
+#14 436.4 Saving: HSFHIR.X0001.S.ResearchDefinition
+#14 436.4 Saving: HSFHIR.X0001.S.ResearchElementDefinition.contextQuantity
+#14 436.4 Saving: HSFHIR.X0001.S.ResearchElementDefinition
+#14 436.4 Saving: HSFHIR.X0001.S.ResearchStudy
+#14 436.4 Saving: HSFHIR.X0001.S.ResearchSubject
+#14 436.5 Saving: HSFHIR.X0001.S.Rsrc
+#14 436.5 Saving: HSFHIR.X0001.S.RiskAssessment
+#14 436.5 Saving: HSFHIR.X0001.S.RiskEvidenceSynthesis.contextQuantity
+#14 436.5 Saving: HSFHIR.X0001.S.RiskEvidenceSynthesis
+#14 436.5 Saving: HSFHIR.X0001.S.Schedule
+#14 436.5 Saving: HSFHIR.X0001.S.SearchParameter.contextQuantity
+#14 436.5 Saving: HSFHIR.X0001.S.SearchParameter
+#14 436.5 Saving: HSFHIR.X0001.S.ServiceRequest
+#14 436.5 Saving: HSFHIR.X0001.S.Slot
+#14 436.5 Saving: HSFHIR.X0001.S.Specimen
+#14 436.5 Saving: HSFHIR.X0001.S.SpecimenDefinition
+#14 436.6 Saving: HSFHIR.X0001.S.StructureDefinition.contextQuantity
+#14 436.6 Saving: HSFHIR.X0001.S.StructureDefinition
+#14 436.6 Saving: HSFHIR.X0001.S.StructureMap.contextQuantity
+#14 436.6 Saving: HSFHIR.X0001.S.StructureMap
+#14 436.6 Saving: HSFHIR.X0001.S.Subscription
+#14 436.6 Saving: HSFHIR.X0001.S.Substance.quantity
+#14 436.6 Saving: HSFHIR.X0001.S.Substance
+#14 436.6 Saving: HSFHIR.X0001.S.SubstanceNucleicAcid
+#14 436.6 Saving: HSFHIR.X0001.S.SubstancePolymer
+#14 436.6 Saving: HSFHIR.X0001.S.SubstanceProtein
+#14 436.6 Saving: HSFHIR.X0001.S.SubstanceReferenceInformation
+#14 436.6 Saving: HSFHIR.X0001.S.SubstanceSourceMaterial
+#14 436.6 Saving: HSFHIR.X0001.S.SubstanceSpecification
+#14 436.6 Saving: HSFHIR.X0001.S.SupplyDelivery
+#14 436.6 Saving: HSFHIR.X0001.S.SupplyRequest
+#14 436.7 Saving: HSFHIR.X0001.S.Task
+#14 436.7 Saving: HSFHIR.X0001.S.TerminologyCapabilities.contextQuantity
+#14 436.7 Saving: HSFHIR.X0001.S.TerminologyCapabilities
+#14 436.7 Saving: HSFHIR.X0001.S.TestReport
+#14 436.7 Saving: HSFHIR.X0001.S.TestScript.contextQuantity
+#14 436.7 Saving: HSFHIR.X0001.S.TestScript
+#14 436.7 Saving: HSFHIR.X0001.S.ValueSet.contextQuantity
+#14 436.7 Saving: HSFHIR.X0001.S.ValueSet
+#14 436.7 Saving: HSFHIR.X0001.S.VerificationResult
+#14 436.7 Saving: HSFHIR.X0001.S.VisionPrescription
+#14 436.7 Done.
+#14 436.7 Compiling HSFHIR.X0001.S.*...
+#14 491.6 Setting default selectivities for Search Tables
+#14 493.3 Compilation started on 10/09/2023 20:03:53
+#14 493.3 Compiling 181 classes
+#14 495.5 Compiling class HSFHIR.X0001.S.Account
+#14 495.7 Compiling class HSFHIR.X0001.S.ActivityDefinition
+#14 495.9 Compiling class HSFHIR.X0001.S.ActivityDefinition.contextQuantity
+#14 495.9 Compiling class HSFHIR.X0001.S.AdverseEvent
+#14 496.1 Compiling class HSFHIR.X0001.S.AllergyIntolerance
+#14 496.3 Compiling class HSFHIR.X0001.S.Appointment
+#14 496.5 Compiling class HSFHIR.X0001.S.AppointmentResponse
+#14 496.6 Compiling class HSFHIR.X0001.S.AuditEvent
+#14 496.8 Compiling class HSFHIR.X0001.S.Basic
+#14 496.9 Compiling class HSFHIR.X0001.S.Binary
+#14 497.0 Compiling class HSFHIR.X0001.S.BiologicallyDerivedProduct
+#14 497.1 Compiling class HSFHIR.X0001.S.BodyStructure
+#14 497.2 Compiling class HSFHIR.X0001.S.Bundle
+#14 497.3 Compiling class HSFHIR.X0001.S.CapabilityStatement
+#14 497.5 Compiling class HSFHIR.X0001.S.CapabilityStatement.contextQuantity
+#14 497.6 Compiling class HSFHIR.X0001.S.CarePlan
+#14 497.8 Compiling class HSFHIR.X0001.S.CareTeam
+#14 497.9 Compiling class HSFHIR.X0001.S.CatalogEntry
+#14 498.0 Compiling class HSFHIR.X0001.S.ChargeItem
+#14 498.2 Compiling class HSFHIR.X0001.S.ChargeItemDefinition
+#14 498.4 Compiling class HSFHIR.X0001.S.ChargeItemDefinition.contextQuantity
+#14 498.4 Compiling class HSFHIR.X0001.S.Claim
+#14 498.6 Compiling class HSFHIR.X0001.S.ClaimResponse
+#14 498.7 Compiling class HSFHIR.X0001.S.ClinicalImpression
+#14 498.9 Compiling class HSFHIR.X0001.S.CodeSystem
+#14 499.1 Compiling class HSFHIR.X0001.S.CodeSystem.contextQuantity
+#14 499.1 Compiling class HSFHIR.X0001.S.Communication
+#14 499.3 Compiling class HSFHIR.X0001.S.CommunicationRequest
+#14 499.5 Compiling class HSFHIR.X0001.S.CompartmentDefinition
+#14 499.6 Compiling class HSFHIR.X0001.S.CompartmentDefinition.contextQuantity
+#14 499.7 Compiling class HSFHIR.X0001.S.Composition
+#14 499.9 Compiling class HSFHIR.X0001.S.ConceptMap
+#14 500.1 Compiling class HSFHIR.X0001.S.ConceptMap.contextQuantity
+#14 500.2 Compiling class HSFHIR.X0001.S.Condition
+#14 500.4 Compiling class HSFHIR.X0001.S.Condition.abatementAge
+#14 500.4 Compiling class HSFHIR.X0001.S.Condition.onsetAge
+#14 500.5 Compiling class HSFHIR.X0001.S.Consent
+#14 500.7 Compiling class HSFHIR.X0001.S.Contract
+#14 500.8 Compiling class HSFHIR.X0001.S.Coverage
+#14 501.0 Compiling class HSFHIR.X0001.S.CoverageEligibilityRequest
+#14 501.1 Compiling class HSFHIR.X0001.S.CoverageEligibilityResponse
+#14 501.2 Compiling class HSFHIR.X0001.S.DetectedIssue
+#14 501.4 Compiling class HSFHIR.X0001.S.Device
+#14 501.5 Compiling class HSFHIR.X0001.S.DeviceDefinition
+#14 501.6 Compiling class HSFHIR.X0001.S.DeviceMetric
+#14 501.7 Compiling class HSFHIR.X0001.S.DeviceRequest
+#14 501.9 Compiling class HSFHIR.X0001.S.DeviceUseStatement
+#14 502.1 Compiling class HSFHIR.X0001.S.DiagnosticReport
+#14 502.3 Compiling class HSFHIR.X0001.S.DocumentManifest
+#14 502.4 Compiling class HSFHIR.X0001.S.DocumentReference
+#14 502.7 Compiling class HSFHIR.X0001.S.EffectEvidenceSynthesis
+#14 502.8 Compiling class HSFHIR.X0001.S.EffectEvidenceSynthesis.contextQuantity
+#14 502.9 Compiling class HSFHIR.X0001.S.Encounter
+#14 503.2 Compiling class HSFHIR.X0001.S.Endpoint
+#14 503.3 Compiling class HSFHIR.X0001.S.EnrollmentRequest
+#14 503.4 Compiling class HSFHIR.X0001.S.EnrollmentResponse
+#14 503.5 Compiling class HSFHIR.X0001.S.EpisodeOfCare
+#14 503.6 Compiling class HSFHIR.X0001.S.EventDefinition
+#14 503.8 Compiling class HSFHIR.X0001.S.EventDefinition.contextQuantity
+#14 503.9 Compiling class HSFHIR.X0001.S.Evidence
+#14 504.1 Compiling class HSFHIR.X0001.S.Evidence.contextQuantity
+#14 504.1 Compiling class HSFHIR.X0001.S.EvidenceVariable
+#14 504.4 Compiling class HSFHIR.X0001.S.EvidenceVariable.contextQuantity
+#14 504.4 Compiling class HSFHIR.X0001.S.ExampleScenario
+#14 504.5 Compiling class HSFHIR.X0001.S.ExampleScenario.contextQuantity
+#14 504.6 Compiling class HSFHIR.X0001.S.ExplanationOfBenefit
+#14 504.8 Compiling class HSFHIR.X0001.S.FamilyMemberHistory
+#14 504.9 Compiling class HSFHIR.X0001.S.Flag
+#14 505.1 Compiling class HSFHIR.X0001.S.Goal
+#14 505.2 Compiling class HSFHIR.X0001.S.GraphDefinition
+#14 505.3 Compiling class HSFHIR.X0001.S.GraphDefinition.contextQuantity
+#14 505.4 Compiling class HSFHIR.X0001.S.Group
+#14 505.5 Compiling class HSFHIR.X0001.S.GuidanceResponse
+#14 505.6 Compiling class HSFHIR.X0001.S.HealthcareService
+#14 505.8 Compiling class HSFHIR.X0001.S.ImagingStudy
+#14 506.0 Compiling class HSFHIR.X0001.S.Immunization
+#14 506.2 Compiling class HSFHIR.X0001.S.ImmunizationEvaluation
+#14 506.3 Compiling class HSFHIR.X0001.S.ImmunizationRecommendation
+#14 506.5 Compiling class HSFHIR.X0001.S.ImplementationGuide
+#14 506.6 Compiling class HSFHIR.X0001.S.ImplementationGuide.contextQuantity
+#14 506.7 Compiling class HSFHIR.X0001.S.InsurancePlan
+#14 506.9 Compiling class HSFHIR.X0001.S.Invoice
+#14 507.0 Compiling class HSFHIR.X0001.S.Library
+#14 507.3 Compiling class HSFHIR.X0001.S.Library.contextQuantity
+#14 507.3 Compiling class HSFHIR.X0001.S.Linkage
+#14 507.4 Compiling class HSFHIR.X0001.S.List
+#14 507.6 Compiling class HSFHIR.X0001.S.Location
+#14 507.7 Compiling class HSFHIR.X0001.S.Measure
+#14 507.9 Compiling class HSFHIR.X0001.S.Measure.contextQuantity
+#14 508.0 Compiling class HSFHIR.X0001.S.MeasureReport
+#14 508.1 Compiling class HSFHIR.X0001.S.Media
+#14 508.3 Compiling class HSFHIR.X0001.S.Medication
+#14 508.4 Compiling class HSFHIR.X0001.S.MedicationAdministration
+#14 508.6 Compiling class HSFHIR.X0001.S.MedicationDispense
+#14 508.8 Compiling class HSFHIR.X0001.S.MedicationKnowledge
+#14 509.0 Compiling class HSFHIR.X0001.S.MedicationRequest
+#14 509.1 Compiling class HSFHIR.X0001.S.MedicationStatement
+#14 509.3 Compiling class HSFHIR.X0001.S.MedicinalProduct
+#14 509.4 Compiling class HSFHIR.X0001.S.MedicinalProductAuthorization
+#14 509.5 Compiling class HSFHIR.X0001.S.MedicinalProductContraindication
+#14 509.6 Compiling class HSFHIR.X0001.S.MedicinalProductIndication
+#14 509.7 Compiling class HSFHIR.X0001.S.MedicinalProductIngredient
+#14 509.8 Compiling class HSFHIR.X0001.S.MedicinalProductInteraction
+#14 509.9 Compiling class HSFHIR.X0001.S.MedicinalProductManufactured
+#14 510.0 Compiling class HSFHIR.X0001.S.MedicinalProductPackaged
+#14 510.1 Compiling class HSFHIR.X0001.S.MedicinalProductPharmaceutical
+#14 510.2 Compiling class HSFHIR.X0001.S.MedicinalProductUndesirableEffect
+#14 510.3 Compiling class HSFHIR.X0001.S.MessageDefinition
+#14 510.4 Compiling class HSFHIR.X0001.S.MessageDefinition.contextQuantity
+#14 510.5 Compiling class HSFHIR.X0001.S.MessageHeader
+#14 510.7 Compiling class HSFHIR.X0001.S.MolecularSequence
+#14 510.8 Compiling class HSFHIR.X0001.S.NamingSystem
+#14 511.0 Compiling class HSFHIR.X0001.S.NamingSystem.contextQuantity
+#14 511.0 Compiling class HSFHIR.X0001.S.NutritionOrder
+#14 511.2 Compiling class HSFHIR.X0001.S.Observation
+#14 511.5 Compiling class HSFHIR.X0001.S.Observation.comboValueQuantity
+#14 511.5 Compiling class HSFHIR.X0001.S.Observation.componentValueQuantity
+#14 511.6 Compiling class HSFHIR.X0001.S.Observation.valueQuantity
+#14 511.6 Compiling class HSFHIR.X0001.S.ObservationDefinition
+#14 511.7 Compiling class HSFHIR.X0001.S.OperationDefinition
+#14 511.9 Compiling class HSFHIR.X0001.S.OperationDefinition.contextQuantity
+#14 512.0 Compiling class HSFHIR.X0001.S.OperationOutcome
+#14 512.0 Compiling class HSFHIR.X0001.S.Organization
+#14 512.2 Compiling class HSFHIR.X0001.S.OrganizationAffiliation
+#14 512.4 Compiling class HSFHIR.X0001.S.Patient
+#14 512.6 Compiling class HSFHIR.X0001.S.PaymentNotice
+#14 512.8 Compiling class HSFHIR.X0001.S.PaymentReconciliation
+#14 512.9 Compiling class HSFHIR.X0001.S.Person
+#14 513.1 Compiling class HSFHIR.X0001.S.PlanDefinition
+#14 513.3 Compiling class HSFHIR.X0001.S.PlanDefinition.contextQuantity
+#14 513.4 Compiling class HSFHIR.X0001.S.Practitioner
+#14 513.6 Compiling class HSFHIR.X0001.S.PractitionerRole
+#14 513.8 Compiling class HSFHIR.X0001.S.Procedure
+#14 514.0 Compiling class HSFHIR.X0001.S.Provenance
+#14 514.1 Compiling class HSFHIR.X0001.S.Questionnaire
+#14 514.3 Compiling class HSFHIR.X0001.S.Questionnaire.contextQuantity
+#14 514.4 Compiling class HSFHIR.X0001.S.QuestionnaireResponse
+#14 514.5 Compiling class HSFHIR.X0001.S.RelatedPerson
+#14 514.7 Compiling class HSFHIR.X0001.S.RequestGroup
+#14 514.9 Compiling class HSFHIR.X0001.S.ResearchDefinition
+#14 515.1 Compiling class HSFHIR.X0001.S.ResearchDefinition.contextQuantity
+#14 515.2 Compiling class HSFHIR.X0001.S.ResearchElementDefinition
+#14 515.4 Compiling class HSFHIR.X0001.S.ResearchElementDefinition.contextQuantity
+#14 515.4 Compiling class HSFHIR.X0001.S.ResearchStudy
+#14 515.6 Compiling class HSFHIR.X0001.S.ResearchSubject
+#14 515.7 Compiling class HSFHIR.X0001.S.RiskAssessment
+#14 515.9 Compiling class HSFHIR.X0001.S.RiskEvidenceSynthesis
+#14 516.0 Compiling class HSFHIR.X0001.S.RiskEvidenceSynthesis.contextQuantity
+#14 516.1 Compiling class HSFHIR.X0001.S.Rsrc
+#14 516.2 Compiling class HSFHIR.X0001.S.Schedule
+#14 516.3 Compiling class HSFHIR.X0001.S.SearchParameter
+#14 516.5 Compiling class HSFHIR.X0001.S.SearchParameter.contextQuantity
+#14 516.5 Compiling class HSFHIR.X0001.S.ServiceRequest
+#14 516.8 Compiling class HSFHIR.X0001.S.Slot
+#14 516.9 Compiling class HSFHIR.X0001.S.Specimen
+#14 517.0 Compiling class HSFHIR.X0001.S.SpecimenDefinition
+#14 517.1 Compiling class HSFHIR.X0001.S.StructureDefinition
+#14 517.4 Compiling class HSFHIR.X0001.S.StructureDefinition.contextQuantity
+#14 517.4 Compiling class HSFHIR.X0001.S.StructureMap
+#14 517.6 Compiling class HSFHIR.X0001.S.StructureMap.contextQuantity
+#14 517.6 Compiling class HSFHIR.X0001.S.Subscription
+#14 517.7 Compiling class HSFHIR.X0001.S.Substance
+#14 517.9 Compiling class HSFHIR.X0001.S.Substance.quantity
+#14 517.9 Compiling class HSFHIR.X0001.S.SubstanceNucleicAcid
+#14 518.0 Compiling class HSFHIR.X0001.S.SubstancePolymer
+#14 518.1 Compiling class HSFHIR.X0001.S.SubstanceProtein
+#14 518.2 Compiling class HSFHIR.X0001.S.SubstanceReferenceInformation
+#14 518.3 Compiling class HSFHIR.X0001.S.SubstanceSourceMaterial
+#14 518.3 Compiling class HSFHIR.X0001.S.SubstanceSpecification
+#14 518.4 Compiling class HSFHIR.X0001.S.SupplyDelivery
+#14 518.5 Compiling class HSFHIR.X0001.S.SupplyRequest
+#14 518.7 Compiling class HSFHIR.X0001.S.Task
+#14 518.9 Compiling class HSFHIR.X0001.S.TerminologyCapabilities
+#14 519.0 Compiling class HSFHIR.X0001.S.TerminologyCapabilities.contextQuantity
+#14 519.1 Compiling class HSFHIR.X0001.S.TestReport
+#14 519.2 Compiling class HSFHIR.X0001.S.TestScript
+#14 519.4 Compiling class HSFHIR.X0001.S.TestScript.contextQuantity
+#14 519.4 Compiling class HSFHIR.X0001.S.ValueSet
+#14 519.6 Compiling class HSFHIR.X0001.S.ValueSet.contextQuantity
+#14 519.7 Compiling class HSFHIR.X0001.S.VerificationResult
+#14 519.8 Compiling class HSFHIR.X0001.S.VisionPrescription
+#14 523.0 Compiling table HSFHIR_X0001_S.Group
+#14 523.0 Compiling table HSFHIR_X0001_S.Procedure
+#14 523.1 Compiling table HSFHIR_X0001_S.Account
+#14 523.1 Compiling table HSFHIR_X0001_S.ActivityDefinition
+#14 523.1 Compiling table HSFHIR_X0001_S.AdverseEvent
+#14 523.1 Compiling table HSFHIR_X0001_S.AllergyIntolerance
+#14 523.2 Compiling table HSFHIR_X0001_S.Appointment
+#14 523.2 Compiling table HSFHIR_X0001_S.AppointmentResponse
+#14 523.2 Compiling table HSFHIR_X0001_S.AuditEvent
+#14 523.2 Compiling table HSFHIR_X0001_S.Basic
+#14 523.2 Compiling table HSFHIR_X0001_S.Binary
+#14 523.3 Compiling table HSFHIR_X0001_S.BiologicallyDerivedProduct
+#14 523.3 Compiling table HSFHIR_X0001_S.BodyStructure
+#14 523.3 Compiling table HSFHIR_X0001_S.Bundle
+#14 523.3 Compiling table HSFHIR_X0001_S.CapabilityStatement
+#14 523.3 Compiling table HSFHIR_X0001_S.CarePlan
+#14 523.3 Compiling table HSFHIR_X0001_S.CareTeam
+#14 523.4 Compiling table HSFHIR_X0001_S.CatalogEntry
+#14 523.4 Compiling table HSFHIR_X0001_S.ChargeItem
+#14 523.4 Compiling table HSFHIR_X0001_S.ChargeItemDefinition
+#14 523.4 Compiling table HSFHIR_X0001_S.Claim
+#14 523.5 Compiling table HSFHIR_X0001_S.ClaimResponse
+#14 523.5 Compiling table HSFHIR_X0001_S.ClinicalImpression
+#14 523.5 Compiling table HSFHIR_X0001_S.CodeSystem
+#14 523.5 Compiling table HSFHIR_X0001_S.Communication
+#14 523.5 Compiling table HSFHIR_X0001_S.CommunicationRequest
+#14 523.6 Compiling table HSFHIR_X0001_S.CompartmentDefinition
+#14 523.6 Compiling table HSFHIR_X0001_S.Composition
+#14 523.6 Compiling table HSFHIR_X0001_S.ConceptMap
+#14 523.6 Compiling table HSFHIR_X0001_S.Condition
+#14 523.7 Compiling table HSFHIR_X0001_S.Consent
+#14 523.7 Compiling table HSFHIR_X0001_S.Contract
+#14 523.7 Compiling table HSFHIR_X0001_S.Coverage
+#14 523.7 Compiling table HSFHIR_X0001_S.CoverageEligibilityRequest
+#14 523.7 Compiling table HSFHIR_X0001_S.CoverageEligibilityResponse
+#14 523.8 Compiling table HSFHIR_X0001_S.DetectedIssue
+#14 523.8 Compiling table HSFHIR_X0001_S.Device
+#14 523.8 Compiling table HSFHIR_X0001_S.DeviceDefinition
+#14 523.8 Compiling table HSFHIR_X0001_S.DeviceMetric
+#14 523.8 Compiling table HSFHIR_X0001_S.DeviceRequest
+#14 523.8 Compiling table HSFHIR_X0001_S.DeviceUseStatement
+#14 523.9 Compiling table HSFHIR_X0001_S.DiagnosticReport
+#14 523.9 Compiling table HSFHIR_X0001_S.DocumentManifest
+#14 523.9 Compiling table HSFHIR_X0001_S.DocumentReference
+#14 523.9 Compiling table HSFHIR_X0001_S.EffectEvidenceSynthesis
+#14 524.0 Compiling table HSFHIR_X0001_S.Encounter
+#14 524.0 Compiling table HSFHIR_X0001_S.Endpoint
+#14 524.0 Compiling table HSFHIR_X0001_S.EnrollmentRequest
+#14 524.0 Compiling table HSFHIR_X0001_S.EnrollmentResponse
+#14 524.0 Compiling table HSFHIR_X0001_S.EpisodeOfCare
+#14 524.0 Compiling table HSFHIR_X0001_S.EventDefinition
+#14 524.1 Compiling table HSFHIR_X0001_S.Evidence
+#14 524.1 Compiling table HSFHIR_X0001_S.EvidenceVariable
+#14 524.1 Compiling table HSFHIR_X0001_S.ExampleScenario
+#14 524.1 Compiling table HSFHIR_X0001_S.ExplanationOfBenefit
+#14 524.2 Compiling table HSFHIR_X0001_S.FamilyMemberHistory
+#14 524.2 Compiling table HSFHIR_X0001_S.Flag
+#14 524.2 Compiling table HSFHIR_X0001_S.Goal
+#14 524.2 Compiling table HSFHIR_X0001_S.GraphDefinition
+#14 524.2 Compiling table HSFHIR_X0001_S.GuidanceResponse
+#14 524.3 Compiling table HSFHIR_X0001_S.HealthcareService
+#14 524.3 Compiling table HSFHIR_X0001_S.ImagingStudy
+#14 524.3 Compiling table HSFHIR_X0001_S.Immunization
+#14 524.3 Compiling table HSFHIR_X0001_S.ImmunizationEvaluation
+#14 524.3 Compiling table HSFHIR_X0001_S.ImmunizationRecommendation
+#14 524.4 Compiling table HSFHIR_X0001_S.ImplementationGuide
+#14 524.4 Compiling table HSFHIR_X0001_S.InsurancePlan
+#14 524.4 Compiling table HSFHIR_X0001_S.Invoice
+#14 524.4 Compiling table HSFHIR_X0001_S.Library
+#14 524.5 Compiling table HSFHIR_X0001_S.Linkage
+#14 524.5 Compiling table HSFHIR_X0001_S.List
+#14 524.5 Compiling table HSFHIR_X0001_S.Location
+#14 524.5 Compiling table HSFHIR_X0001_S.Measure
+#14 524.5 Compiling table HSFHIR_X0001_S.MeasureReport
+#14 524.6 Compiling table HSFHIR_X0001_S.Media
+#14 524.6 Compiling table HSFHIR_X0001_S.Medication
+#14 524.6 Compiling table HSFHIR_X0001_S.MedicationAdministration
+#14 524.6 Compiling table HSFHIR_X0001_S.MedicationDispense
+#14 524.7 Compiling table HSFHIR_X0001_S.MedicationKnowledge
+#14 524.7 Compiling table HSFHIR_X0001_S.MedicationRequest
+#14 524.7 Compiling table HSFHIR_X0001_S.MedicationStatement
+#14 524.7 Compiling table HSFHIR_X0001_S.MedicinalProduct
+#14 524.7 Compiling table HSFHIR_X0001_S.MedicinalProductAuthorization
+#14 524.7 Compiling table HSFHIR_X0001_S.MedicinalProductContraindication
+#14 524.8 Compiling table HSFHIR_X0001_S.MedicinalProductIndication
+#14 524.8 Compiling table HSFHIR_X0001_S.MedicinalProductIngredient
+#14 524.8 Compiling table HSFHIR_X0001_S.MedicinalProductInteraction
+#14 524.8 Compiling table HSFHIR_X0001_S.MedicinalProductManufactured
+#14 524.8 Compiling table HSFHIR_X0001_S.MedicinalProductPackaged
+#14 524.8 Compiling table HSFHIR_X0001_S.MedicinalProductPharmaceutical
+#14 524.8 Compiling table HSFHIR_X0001_S.MedicinalProductUndesirableEffect
+#14 524.8 Compiling table HSFHIR_X0001_S.MessageDefinition
+#14 524.9 Compiling table HSFHIR_X0001_S.MessageHeader
+#14 524.9 Compiling table HSFHIR_X0001_S.MolecularSequence
+#14 524.9 Compiling table HSFHIR_X0001_S.NamingSystem
+#14 524.9 Compiling table HSFHIR_X0001_S.NutritionOrder
+#14 524.9 Compiling table HSFHIR_X0001_S.Observation
+#14 525.0 Compiling table HSFHIR_X0001_S.ObservationDefinition
+#14 525.0 Compiling table HSFHIR_X0001_S.OperationDefinition
+#14 525.0 Compiling table HSFHIR_X0001_S.OperationOutcome
+#14 525.0 Compiling table HSFHIR_X0001_S.Organization
+#14 525.0 Compiling table HSFHIR_X0001_S.OrganizationAffiliation
+#14 525.1 Compiling table HSFHIR_X0001_S.Patient
+#14 525.1 Compiling table HSFHIR_X0001_S.PaymentNotice
+#14 525.1 Compiling table HSFHIR_X0001_S.PaymentReconciliation
+#14 525.1 Compiling table HSFHIR_X0001_S.Person
+#14 525.2 Compiling table HSFHIR_X0001_S.PlanDefinition
+#14 525.2 Compiling table HSFHIR_X0001_S.Practitioner
+#14 525.2 Compiling table HSFHIR_X0001_S.PractitionerRole
+#14 525.2 Compiling table HSFHIR_X0001_S.Provenance
+#14 525.3 Compiling table HSFHIR_X0001_S.Questionnaire
+#14 525.3 Compiling table HSFHIR_X0001_S.QuestionnaireResponse
+#14 525.3 Compiling table HSFHIR_X0001_S.RelatedPerson
+#14 525.3 Compiling table HSFHIR_X0001_S.RequestGroup
+#14 525.3 Compiling table HSFHIR_X0001_S.ResearchDefinition
+#14 525.4 Compiling table HSFHIR_X0001_S.ResearchElementDefinition
+#14 525.4 Compiling table HSFHIR_X0001_S.ResearchStudy
+#14 525.4 Compiling table HSFHIR_X0001_S.ResearchSubject
+#14 525.4 Compiling table HSFHIR_X0001_S.RiskAssessment
+#14 525.5 Compiling table HSFHIR_X0001_S.RiskEvidenceSynthesis
+#14 525.5 Compiling table HSFHIR_X0001_S.Rsrc
+#14 525.5 Compiling table HSFHIR_X0001_S.Schedule
+#14 525.5 Compiling table HSFHIR_X0001_S.SearchParameter
+#14 525.5 Compiling table HSFHIR_X0001_S.ServiceRequest
+#14 525.6 Compiling table HSFHIR_X0001_S.Slot
+#14 525.6 Compiling table HSFHIR_X0001_S.Specimen
+#14 525.6 Compiling table HSFHIR_X0001_S.SpecimenDefinition
+#14 525.6 Compiling table HSFHIR_X0001_S.StructureDefinition
+#14 525.6 Compiling table HSFHIR_X0001_S.StructureMap
+#14 525.7 Compiling table HSFHIR_X0001_S.Subscription
+#14 525.7 Compiling table HSFHIR_X0001_S.Substance
+#14 525.7 Compiling table HSFHIR_X0001_S.SubstanceNucleicAcid
+#14 525.7 Compiling table HSFHIR_X0001_S.SubstancePolymer
+#14 525.7 Compiling table HSFHIR_X0001_S.SubstanceProtein
+#14 525.7 Compiling table HSFHIR_X0001_S.SubstanceReferenceInformation
+#14 525.7 Compiling table HSFHIR_X0001_S.SubstanceSourceMaterial
+#14 525.7 Compiling table HSFHIR_X0001_S.SubstanceSpecification
+#14 525.8 Compiling table HSFHIR_X0001_S.SupplyDelivery
+#14 525.8 Compiling table HSFHIR_X0001_S.SupplyRequest
+#14 525.8 Compiling table HSFHIR_X0001_S.Task
+#14 525.8 Compiling table HSFHIR_X0001_S.TerminologyCapabilities
+#14 525.8 Compiling table HSFHIR_X0001_S.TestReport
+#14 525.9 Compiling table HSFHIR_X0001_S.TestScript
+#14 525.9 Compiling table HSFHIR_X0001_S.ValueSet
+#14 525.9 Compiling table HSFHIR_X0001_S.VerificationResult
+#14 525.9 Compiling table HSFHIR_X0001_S.VisionPrescription
+#14 525.9 Compiling table HSFHIR_X0001_S_ActivityDefinition.contextQuantity
+#14 525.9 Compiling table HSFHIR_X0001_S_CapabilityStatement.contextQuantity
+#14 525.9 Compiling table HSFHIR_X0001_S_ChargeItemDefinition.contextQuantity
+#14 526.0 Compiling table HSFHIR_X0001_S_CodeSystem.contextQuantity
+#14 526.0 Compiling table HSFHIR_X0001_S_CompartmentDefinition.contextQuantity
+#14 526.0 Compiling table HSFHIR_X0001_S_ConceptMap.contextQuantity
+#14 526.0 Compiling table HSFHIR_X0001_S_Condition.abatementAge
+#14 526.0 Compiling table HSFHIR_X0001_S_Condition.onsetAge
+#14 526.0 Compiling table HSFHIR_X0001_S_EffectEvidenceSynthesis.contextQuantity
+#14 526.0 Compiling table HSFHIR_X0001_S_EventDefinition.contextQuantity
+#14 526.0 Compiling table HSFHIR_X0001_S_Evidence.contextQuantity
+#14 526.0 Compiling table HSFHIR_X0001_S_EvidenceVariable.contextQuantity
+#14 526.0 Compiling table HSFHIR_X0001_S_ExampleScenario.contextQuantity
+#14 526.0 Compiling table HSFHIR_X0001_S_GraphDefinition.contextQuantity
+#14 526.0 Compiling table HSFHIR_X0001_S_ImplementationGuide.contextQuantity
+#14 526.1 Compiling table HSFHIR_X0001_S_Library.contextQuantity
+#14 526.1 Compiling table HSFHIR_X0001_S_Measure.contextQuantity
+#14 526.1 Compiling table HSFHIR_X0001_S_MessageDefinition.contextQuantity
+#14 526.1 Compiling table HSFHIR_X0001_S_NamingSystem.contextQuantity
+#14 526.1 Compiling table HSFHIR_X0001_S_Observation.comboValueQuantity
+#14 526.1 Compiling table HSFHIR_X0001_S_Observation.componentValueQuantity
+#14 526.1 Compiling table HSFHIR_X0001_S_Observation.valueQuantity
+#14 526.1 Compiling table HSFHIR_X0001_S_OperationDefinition.contextQuantity
+#14 526.1 Compiling table HSFHIR_X0001_S_PlanDefinition.contextQuantity
+#14 526.1 Compiling table HSFHIR_X0001_S_Questionnaire.contextQuantity
+#14 526.1 Compiling table HSFHIR_X0001_S_ResearchDefinition.contextQuantity
+#14 526.1 Compiling table HSFHIR_X0001_S_ResearchElementDefinition.contextQuantity
+#14 526.2 Compiling table HSFHIR_X0001_S_RiskEvidenceSynthesis.contextQuantity
+#14 526.2 Compiling table HSFHIR_X0001_S_SearchParameter.contextQuantity
+#14 526.2 Compiling table HSFHIR_X0001_S_StructureDefinition.contextQuantity
+#14 526.2 Compiling table HSFHIR_X0001_S_StructureMap.contextQuantity
+#14 526.2 Compiling table HSFHIR_X0001_S_Substance.quantity
+#14 526.2 Compiling table HSFHIR_X0001_S_TerminologyCapabilities.contextQuantity
+#14 526.2 Compiling table HSFHIR_X0001_S_TestScript.contextQuantity
+#14 526.2 Compiling table HSFHIR_X0001_S_ValueSet.contextQuantity
+#14 526.3 Compiling routine HSFHIR.X0001.S.Account.1
+#14 526.4 Compiling routine HSFHIR.X0001.S.ActivityDefinition.1
+#14 526.6 Compiling routine HSFHIR.X0001.S.ActivityDefinition.contextQuantity.1
+#14 526.7 Compiling routine HSFHIR.X0001.S.AdverseEvent.1
+#14 526.9 Compiling routine HSFHIR.X0001.S.AllergyIntolerance.1
+#14 527.0 Compiling routine HSFHIR.X0001.S.Appointment.1
+#14 527.2 Compiling routine HSFHIR.X0001.S.AppointmentResponse.1
+#14 527.4 Compiling routine HSFHIR.X0001.S.AuditEvent.1
+#14 527.6 Compiling routine HSFHIR.X0001.S.Basic.1
+#14 527.7 Compiling routine HSFHIR.X0001.S.Binary.1
+#14 527.8 Compiling routine HSFHIR.X0001.S.BiologicallyDerivedProduct.1
+#14 527.9 Compiling routine HSFHIR.X0001.S.BodyStructure.1
+#14 528.0 Compiling routine HSFHIR.X0001.S.Bundle.1
+#14 528.1 Compiling routine HSFHIR.X0001.S.CapabilityStatement.1
+#14 528.3 Compiling routine HSFHIR.X0001.S.CapabilityStatement.contextQuantity.1
+#14 528.4 Compiling routine HSFHIR.X0001.S.CarePlan.1
+#14 528.7 Compiling routine HSFHIR.X0001.S.CareTeam.1
+#14 528.8 Compiling routine HSFHIR.X0001.S.CatalogEntry.1
+#14 528.9 Compiling routine HSFHIR.X0001.S.ChargeItem.1
+#14 529.1 Compiling routine HSFHIR.X0001.S.ChargeItemDefinition.1
+#14 529.2 Compiling routine HSFHIR.X0001.S.ChargeItemDefinition.contextQuantity.1
+#14 529.3 Compiling routine HSFHIR.X0001.S.Claim.1
+#14 529.5 Compiling routine HSFHIR.X0001.S.ClaimResponse.1
+#14 529.6 Compiling routine HSFHIR.X0001.S.ClinicalImpression.1
+#14 529.8 Compiling routine HSFHIR.X0001.S.CodeSystem.1
+#14 530.0 Compiling routine HSFHIR.X0001.S.CodeSystem.contextQuantity.1
+#14 530.1 Compiling routine HSFHIR.X0001.S.Communication.1
+#14 530.2 Compiling routine HSFHIR.X0001.S.CommunicationRequest.1
+#14 530.4 Compiling routine HSFHIR.X0001.S.CompartmentDefinition.1
+#14 530.5 Compiling routine HSFHIR.X0001.S.CompartmentDefinition.contextQuantity.1
+#14 530.6 Compiling routine HSFHIR.X0001.S.Composition.1
+#14 530.8 Compiling routine HSFHIR.X0001.S.ConceptMap.1
+#14 531.0 Compiling routine HSFHIR.X0001.S.ConceptMap.contextQuantity.1
+#14 531.1 Compiling routine HSFHIR.X0001.S.Condition.1
+#14 531.3 Compiling routine HSFHIR.X0001.S.Condition.abatementAge.1
+#14 531.4 Compiling routine HSFHIR.X0001.S.Condition.onsetAge.1
+#14 531.5 Compiling routine HSFHIR.X0001.S.Consent.1
+#14 531.7 Compiling routine HSFHIR.X0001.S.Contract.1
+#14 531.8 Compiling routine HSFHIR.X0001.S.Coverage.1
+#14 532.0 Compiling routine HSFHIR.X0001.S.CoverageEligibilityRequest.1
+#14 532.1 Compiling routine HSFHIR.X0001.S.CoverageEligibilityResponse.1
+#14 532.2 Compiling routine HSFHIR.X0001.S.DetectedIssue.1
+#14 532.4 Compiling routine HSFHIR.X0001.S.Device.1
+#14 532.5 Compiling routine HSFHIR.X0001.S.DeviceDefinition.1
+#14 532.6 Compiling routine HSFHIR.X0001.S.DeviceMetric.1
+#14 532.8 Compiling routine HSFHIR.X0001.S.DeviceRequest.1
+#14 533.0 Compiling routine HSFHIR.X0001.S.DeviceUseStatement.1
+#14 533.1 Compiling routine HSFHIR.X0001.S.DiagnosticReport.1
+#14 533.3 Compiling routine HSFHIR.X0001.S.DocumentManifest.1
+#14 533.4 Compiling routine HSFHIR.X0001.S.DocumentReference.1
+#14 533.7 Compiling routine HSFHIR.X0001.S.EffectEvidenceSynthesis.1
+#14 533.8 Compiling routine HSFHIR.X0001.S.EffectEvidenceSynthesis.contextQuantity.1
+#14 533.9 Compiling routine HSFHIR.X0001.S.Encounter.1
+#14 534.2 Compiling routine HSFHIR.X0001.S.Endpoint.1
+#14 534.3 Compiling routine HSFHIR.X0001.S.EnrollmentRequest.1
+#14 534.4 Compiling routine HSFHIR.X0001.S.EnrollmentResponse.1
+#14 534.5 Compiling routine HSFHIR.X0001.S.EpisodeOfCare.1
+#14 534.7 Compiling routine HSFHIR.X0001.S.EventDefinition.1
+#14 534.9 Compiling routine HSFHIR.X0001.S.EventDefinition.contextQuantity.1
+#14 534.9 Compiling routine HSFHIR.X0001.S.Evidence.1
+#14 535.1 Compiling routine HSFHIR.X0001.S.Evidence.contextQuantity.1
+#14 535.2 Compiling routine HSFHIR.X0001.S.EvidenceVariable.1
+#14 535.4 Compiling routine HSFHIR.X0001.S.EvidenceVariable.contextQuantity.1
+#14 535.5 Compiling routine HSFHIR.X0001.S.ExampleScenario.1
+#14 535.6 Compiling routine HSFHIR.X0001.S.ExampleScenario.contextQuantity.1
+#14 535.7 Compiling routine HSFHIR.X0001.S.ExplanationOfBenefit.1
+#14 535.9 Compiling routine HSFHIR.X0001.S.FamilyMemberHistory.1
+#14 536.1 Compiling routine HSFHIR.X0001.S.Flag.1
+#14 536.2 Compiling routine HSFHIR.X0001.S.Goal.1
+#14 536.3 Compiling routine HSFHIR.X0001.S.GraphDefinition.1
+#14 536.5 Compiling routine HSFHIR.X0001.S.GraphDefinition.contextQuantity.1
+#14 536.6 Compiling routine HSFHIR.X0001.S.Group.1
+#14 536.7 Compiling routine HSFHIR.X0001.S.GuidanceResponse.1
+#14 536.8 Compiling routine HSFHIR.X0001.S.HealthcareService.1
+#14 537.0 Compiling routine HSFHIR.X0001.S.ImagingStudy.1
+#14 537.2 Compiling routine HSFHIR.X0001.S.Immunization.1
+#14 537.4 Compiling routine HSFHIR.X0001.S.ImmunizationEvaluation.1
+#14 537.5 Compiling routine HSFHIR.X0001.S.ImmunizationRecommendation.1
+#14 537.6 Compiling routine HSFHIR.X0001.S.ImplementationGuide.1
+#14 537.8 Compiling routine HSFHIR.X0001.S.ImplementationGuide.contextQuantity.1
+#14 537.9 Compiling routine HSFHIR.X0001.S.InsurancePlan.1
+#14 538.1 Compiling routine HSFHIR.X0001.S.Invoice.1
+#14 538.2 Compiling routine HSFHIR.X0001.S.Library.1
+#14 538.4 Compiling routine HSFHIR.X0001.S.Library.contextQuantity.1
+#14 538.5 Compiling routine HSFHIR.X0001.S.Linkage.1
+#14 538.6 Compiling routine HSFHIR.X0001.S.List.1
+#14 538.8 Compiling routine HSFHIR.X0001.S.Location.1
+#14 538.9 Compiling routine HSFHIR.X0001.S.Measure.1
+#14 539.1 Compiling routine HSFHIR.X0001.S.Measure.contextQuantity.1
+#14 539.2 Compiling routine HSFHIR.X0001.S.MeasureReport.1
+#14 539.4 Compiling routine HSFHIR.X0001.S.Media.1
+#14 539.5 Compiling routine HSFHIR.X0001.S.Medication.1
+#14 539.7 Compiling routine HSFHIR.X0001.S.MedicationAdministration.1
+#14 539.8 Compiling routine HSFHIR.X0001.S.MedicationDispense.1
+#14 540.0 Compiling routine HSFHIR.X0001.S.MedicationKnowledge.1
+#14 540.2 Compiling routine HSFHIR.X0001.S.MedicationRequest.1
+#14 540.3 Compiling routine HSFHIR.X0001.S.MedicationStatement.1
+#14 540.5 Compiling routine HSFHIR.X0001.S.MedicinalProduct.1
+#14 540.6 Compiling routine HSFHIR.X0001.S.MedicinalProductAuthorization.1
+#14 540.7 Compiling routine HSFHIR.X0001.S.MedicinalProductContraindication.1
+#14 540.8 Compiling routine HSFHIR.X0001.S.MedicinalProductIndication.1
+#14 541.0 Compiling routine HSFHIR.X0001.S.MedicinalProductIngredient.1
+#14 541.1 Compiling routine HSFHIR.X0001.S.MedicinalProductInteraction.1
+#14 541.2 Compiling routine HSFHIR.X0001.S.MedicinalProductManufactured.1
+#14 541.3 Compiling routine HSFHIR.X0001.S.MedicinalProductPackaged.1
+#14 541.4 Compiling routine HSFHIR.X0001.S.MedicinalProductPharmaceutical.1
+#14 541.5 Compiling routine HSFHIR.X0001.S.MedicinalProductUndesirableEffect.1
+#14 541.6 Compiling routine HSFHIR.X0001.S.MessageDefinition.1
+#14 541.8 Compiling routine HSFHIR.X0001.S.MessageDefinition.contextQuantity.1
+#14 541.9 Compiling routine HSFHIR.X0001.S.MessageHeader.1
+#14 542.0 Compiling routine HSFHIR.X0001.S.MolecularSequence.1
+#14 542.2 Compiling routine HSFHIR.X0001.S.NamingSystem.1
+#14 542.4 Compiling routine HSFHIR.X0001.S.NamingSystem.contextQuantity.1
+#14 542.5 Compiling routine HSFHIR.X0001.S.NutritionOrder.1
+#14 542.6 Compiling routine HSFHIR.X0001.S.Observation.1
+#14 542.9 Compiling routine HSFHIR.X0001.S.Observation.comboValueQuantity.1
+#14 543.0 Compiling routine HSFHIR.X0001.S.Observation.componentValueQuantity.1
+#14 543.0 Compiling routine HSFHIR.X0001.S.Observation.valueQuantity.1
+#14 543.1 Compiling routine HSFHIR.X0001.S.ObservationDefinition.1
+#14 543.2 Compiling routine HSFHIR.X0001.S.OperationDefinition.1
+#14 543.4 Compiling routine HSFHIR.X0001.S.OperationDefinition.contextQuantity.1
+#14 543.5 Compiling routine HSFHIR.X0001.S.OperationOutcome.1
+#14 543.6 Compiling routine HSFHIR.X0001.S.Organization.1
+#14 543.8 Compiling routine HSFHIR.X0001.S.OrganizationAffiliation.1
+#14 543.9 Compiling routine HSFHIR.X0001.S.Patient.1
+#14 544.2 Compiling routine HSFHIR.X0001.S.PaymentNotice.1
+#14 544.3 Compiling routine HSFHIR.X0001.S.PaymentReconciliation.1
+#14 544.4 Compiling routine HSFHIR.X0001.S.Person.1
+#14 544.6 Compiling routine HSFHIR.X0001.S.PlanDefinition.1
+#14 544.9 Compiling routine HSFHIR.X0001.S.PlanDefinition.contextQuantity.1
+#14 544.9 Compiling routine HSFHIR.X0001.S.Practitioner.1
+#14 545.1 Compiling routine HSFHIR.X0001.S.PractitionerRole.1
+#14 545.3 Compiling routine HSFHIR.X0001.S.Procedure.1
+#14 545.5 Compiling routine HSFHIR.X0001.S.Provenance.1
+#14 545.7 Compiling routine HSFHIR.X0001.S.Questionnaire.1
+#14 545.8 Compiling routine HSFHIR.X0001.S.Questionnaire.contextQuantity.1
+#14 545.9 Compiling routine HSFHIR.X0001.S.QuestionnaireResponse.1
+#14 546.1 Compiling routine HSFHIR.X0001.S.RelatedPerson.1
+#14 546.3 Compiling routine HSFHIR.X0001.S.RequestGroup.1
+#14 546.4 Compiling routine HSFHIR.X0001.S.ResearchDefinition.1
+#14 546.6 Compiling routine HSFHIR.X0001.S.ResearchDefinition.contextQuantity.1
+#14 546.7 Compiling routine HSFHIR.X0001.S.ResearchElementDefinition.1
+#14 546.9 Compiling routine HSFHIR.X0001.S.ResearchElementDefinition.contextQuantity.1
+#14 547.0 Compiling routine HSFHIR.X0001.S.ResearchStudy.1
+#14 547.2 Compiling routine HSFHIR.X0001.S.ResearchSubject.1
+#14 547.3 Compiling routine HSFHIR.X0001.S.RiskAssessment.1
+#14 547.4 Compiling routine HSFHIR.X0001.S.RiskEvidenceSynthesis.1
+#14 547.6 Compiling routine HSFHIR.X0001.S.RiskEvidenceSynthesis.contextQuantity.1
+#14 547.7 Compiling routine HSFHIR.X0001.S.Rsrc.1
+#14 547.8 Compiling routine HSFHIR.X0001.S.Schedule.1
+#14 547.9 Compiling routine HSFHIR.X0001.S.SearchParameter.1
+#14 548.1 Compiling routine HSFHIR.X0001.S.SearchParameter.contextQuantity.1
+#14 548.2 Compiling routine HSFHIR.X0001.S.ServiceRequest.1
+#14 548.4 Compiling routine HSFHIR.X0001.S.Slot.1
+#14 548.5 Compiling routine HSFHIR.X0001.S.Specimen.1
+#14 548.7 Compiling routine HSFHIR.X0001.S.SpecimenDefinition.1
+#14 548.8 Compiling routine HSFHIR.X0001.S.StructureDefinition.1
+#14 549.0 Compiling routine HSFHIR.X0001.S.StructureDefinition.contextQuantity.1
+#14 549.1 Compiling routine HSFHIR.X0001.S.StructureMap.1
+#14 549.2 Compiling routine HSFHIR.X0001.S.StructureMap.contextQuantity.1
+#14 549.3 Compiling routine HSFHIR.X0001.S.Subscription.1
+#14 549.4 Compiling routine HSFHIR.X0001.S.Substance.1
+#14 549.6 Compiling routine HSFHIR.X0001.S.Substance.quantity.1
+#14 549.7 Compiling routine HSFHIR.X0001.S.SubstanceNucleicAcid.1
+#14 549.8 Compiling routine HSFHIR.X0001.S.SubstancePolymer.1
+#14 549.9 Compiling routine HSFHIR.X0001.S.SubstanceProtein.1
+#14 550.0 Compiling routine HSFHIR.X0001.S.SubstanceReferenceInformation.1
+#14 550.1 Compiling routine HSFHIR.X0001.S.SubstanceSourceMaterial.1
+#14 550.2 Compiling routine HSFHIR.X0001.S.SubstanceSpecification.1
+#14 550.3 Compiling routine HSFHIR.X0001.S.SupplyDelivery.1
+#14 550.4 Compiling routine HSFHIR.X0001.S.SupplyRequest.1
+#14 550.5 Compiling routine HSFHIR.X0001.S.Task.1
+#14 550.7 Compiling routine HSFHIR.X0001.S.TerminologyCapabilities.1
+#14 550.9 Compiling routine HSFHIR.X0001.S.TerminologyCapabilities.contextQuantity.1
+#14 551.0 Compiling routine HSFHIR.X0001.S.TestReport.1
+#14 551.1 Compiling routine HSFHIR.X0001.S.TestScript.1
+#14 551.2 Compiling routine HSFHIR.X0001.S.TestScript.contextQuantity.1
+#14 551.3 Compiling routine HSFHIR.X0001.S.ValueSet.1
+#14 551.5 Compiling routine HSFHIR.X0001.S.ValueSet.contextQuantity.1
+#14 551.6 Compiling routine HSFHIR.X0001.S.VerificationResult.1
+#14 551.7 Compiling routine HSFHIR.X0001.S.VisionPrescription.1
+#14 551.8 Compilation finished successfully in 58.54s.
+#14 551.8
+#14 551.8 Done.
+#14 551.9 Tables built
+#14 552.9
+#14 552.9 FHIRSERVER>
+#14 552.9
+#14 552.9 FHIRSERVER>
+#14 552.9
+#14 552.9 FHIRSERVER>
+#14 552.9
+#14 552.9 FHIRSERVER>
+#14 552.9
+#14 552.9 FHIRSERVER>
+#14 552.9
+#14 552.9 FHIRSERVER>
+#14 552.9
+#14 552.9 FHIRSERVER>
+#14 552.9
+#14 552.9 HSCUSTOM>
+#14 558.3
+#14 558.3 [HSCUSTOM|fhir-openapi-gen]   Reload START (/usr/irissys/mgr/.modules/HSCUSTOM/fhir-openapi-gen/0.4.4/)
+#14 558.5 [HSCUSTOM|fhir-openapi-gen]   Reload SUCCESS
+#14 558.5 [fhir-openapi-gen]    Module object refreshed.
+#14 558.5 [HSCUSTOM|fhir-openapi-gen]   Validate START
+#14 558.5 [HSCUSTOM|fhir-openapi-gen]   Validate SUCCESS
+#14 558.5 [HSCUSTOM|fhir-openapi-gen]   Compile START
+#14 558.8 [HSCUSTOM|fhir-openapi-gen]   Compile SUCCESS
+#14 558.8 [HSCUSTOM|fhir-openapi-gen]   Activate START
+#14 559.0 [HSCUSTOM|fhir-openapi-gen]   Configure START
+#14 559.0 [HSCUSTOM|fhir-openapi-gen]   Configure SUCCESS
+#14 559.0 [HSCUSTOM|fhir-openapi-gen]   Activate SUCCESS
+#14 559.0 HSCUSTOM>
+#14 559.0
+#14 559.0 HSCUSTOM>
+#14 559.0
+#14 559.0 HSCUSTOM>
+#14 559.0
+#14 559.0 HSCUSTOM>
+#14 559.0
+#14 559.0 HSCUSTOM>
+#14 DONE 577.6s
+
+#15 [iris 11/11] RUN echo "SUCCESS"
+#15 3.673 SUCCESS
+#15 DONE 3.8s
+
+#16 [iris] exporting to image
+#16 exporting layers
+#16 exporting layers 257.4s done
+#16 writing image sha256:921cb738a93dc908ce42947766c96fc22346f891283508c57662b020c36a9703 0.1s done
+#16 naming to docker.io/library/pr_fhir-openapi-iris
+#16 naming to docker.io/library/pr_fhir-openapi-iris 0.2s done
+#16 DONE 258.0s
+
+D:\GitHub\PR_fhir-openapi>
